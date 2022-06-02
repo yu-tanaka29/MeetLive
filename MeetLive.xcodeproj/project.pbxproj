@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B173FE30DC523CD51C28F81 /* Pods_MeetLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */; };
 		256250442848868800FC1597 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250432848868800FC1597 /* AppDelegate.swift */; };
 		256250462848868800FC1597 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250452848868800FC1597 /* SceneDelegate.swift */; };
 		256250482848868800FC1597 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250472848868800FC1597 /* ViewController.swift */; };
 		2562504B2848868800FC1597 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256250492848868800FC1597 /* Main.storyboard */; };
 		2562504D2848868B00FC1597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2562504C2848868B00FC1597 /* Assets.xcassets */; };
 		256250502848868B00FC1597 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2562504E2848868B00FC1597 /* LaunchScreen.storyboard */; };
+		256250582848895400FC1597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 256250572848895400FC1597 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		256250402848868800FC1597 /* MeetLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256250432848868800FC1597 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		256250452848868800FC1597 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		2562504C2848868B00FC1597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2562504F2848868B00FC1597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		256250512848868B00FC1597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		256250572848895400FC1597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.release.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.release.xcconfig"; sourceTree = "<group>"; };
+		F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.debug.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B173FE30DC523CD51C28F81 /* Pods_MeetLive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F8899BB0417D3C080089FCF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */,
+				C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		256250372848868800FC1597 = {
 			isa = PBXGroup;
 			children = (
 				256250422848868800FC1597 /* MeetLive */,
 				256250412848868800FC1597 /* Products */,
+				1F8899BB0417D3C080089FCF /* Pods */,
+				830FD214298476C88B534C8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,9 +81,18 @@
 				256250492848868800FC1597 /* Main.storyboard */,
 				2562504C2848868B00FC1597 /* Assets.xcassets */,
 				2562504E2848868B00FC1597 /* LaunchScreen.storyboard */,
+				256250572848895400FC1597 /* GoogleService-Info.plist */,
 				256250512848868B00FC1597 /* Info.plist */,
 			);
 			path = MeetLive;
+			sourceTree = "<group>";
+		};
+		830FD214298476C88B534C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 256250542848868B00FC1597 /* Build configuration list for PBXNativeTarget "MeetLive" */;
 			buildPhases = (
+				76DFBF5BA4D991789FA3D5E3 /* [CP] Check Pods Manifest.lock */,
 				2562503C2848868800FC1597 /* Sources */,
 				2562503D2848868800FC1597 /* Frameworks */,
 				2562503E2848868800FC1597 /* Resources */,
+				0656AE9C2BE6BA279275F9B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,12 +156,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				256250502848868B00FC1597 /* LaunchScreen.storyboard in Resources */,
+				256250582848895400FC1597 /* GoogleService-Info.plist in Resources */,
 				2562504D2848868B00FC1597 /* Assets.xcassets in Resources */,
 				2562504B2848868800FC1597 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0656AE9C2BE6BA279275F9B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetLive/Pods-MeetLive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MeetLive/Pods-MeetLive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MeetLive/Pods-MeetLive-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76DFBF5BA4D991789FA3D5E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MeetLive-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2562503C2848868800FC1597 /* Sources */ = {
@@ -284,6 +357,7 @@
 		};
 		256250552848868B00FC1597 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,7 +369,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,12 +379,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		256250562848868B00FC1597 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,7 +397,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +407,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
