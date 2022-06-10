@@ -10,11 +10,31 @@
 		0B173FE30DC523CD51C28F81 /* Pods_MeetLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */; };
 		256250442848868800FC1597 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250432848868800FC1597 /* AppDelegate.swift */; };
 		256250462848868800FC1597 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250452848868800FC1597 /* SceneDelegate.swift */; };
-		256250482848868800FC1597 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250472848868800FC1597 /* ViewController.swift */; };
 		2562504B2848868800FC1597 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256250492848868800FC1597 /* Main.storyboard */; };
 		2562504D2848868B00FC1597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2562504C2848868B00FC1597 /* Assets.xcassets */; };
 		256250502848868B00FC1597 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2562504E2848868B00FC1597 /* LaunchScreen.storyboard */; };
 		256250582848895400FC1597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 256250572848895400FC1597 /* GoogleService-Info.plist */; };
+		2562505A28489D9400FC1597 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562505928489D9400FC1597 /* LoginViewController.swift */; };
+		2562505C28489DA800FC1597 /* RegistUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562505B28489DA800FC1597 /* RegistUserViewController.swift */; };
+		2562505E28489DBB00FC1597 /* SearchPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562505D28489DBB00FC1597 /* SearchPostViewController.swift */; };
+		2562506028489DC700FC1597 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562505F28489DC700FC1597 /* DetailPostViewController.swift */; };
+		2562506228489DEE00FC1597 /* SuccessPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506128489DEE00FC1597 /* SuccessPostViewController.swift */; };
+		2562506428489DFD00FC1597 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506328489DFD00FC1597 /* SettingViewController.swift */; };
+		2562506628489E0600FC1597 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506528489E0600FC1597 /* MapViewController.swift */; };
+		256250682848A97700FC1597 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250672848A97700FC1597 /* Places.swift */; };
+		2562506A2849939500FC1597 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250692849939500FC1597 /* NewsViewController.swift */; };
+		2562506C28499B1C00FC1597 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506B28499B1C00FC1597 /* TabBarController.swift */; };
+		2562506E2849ABCD00FC1597 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506D2849ABCC00FC1597 /* Const.swift */; };
+		256250702849D55D00FC1597 /* ChangeProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562506F2849D55D00FC1597 /* ChangeProfileViewController.swift */; };
+		256250732849EA0100FC1597 /* FavoriteGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250712849EA0000FC1597 /* FavoriteGroupTableViewCell.swift */; };
+		256250742849EA0100FC1597 /* FavoriteGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256250722849EA0000FC1597 /* FavoriteGroupTableViewCell.xib */; };
+		25625077284D8B4900FC1597 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25625076284D8B4900FC1597 /* UserData.swift */; };
+		25625079284ECFFA00FC1597 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25625078284ECFFA00FC1597 /* PostViewController.swift */; };
+		25D2804C28503679002E056D /* SearchPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2804A28503679002E056D /* SearchPostTableViewCell.swift */; };
+		25D2804D28503679002E056D /* SearchPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D2804B28503679002E056D /* SearchPostTableViewCell.xib */; };
+		25D2804F28505E39002E056D /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2804E28505E39002E056D /* PostData.swift */; };
+		25D28051285190D0002E056D /* Prefectures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D28050285190D0002E056D /* Prefectures.swift */; };
+		25EF33A4284EEF6100966A34 /* Purposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EF33A3284EEF6100966A34 /* Purposes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +42,32 @@
 		256250402848868800FC1597 /* MeetLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256250432848868800FC1597 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		256250452848868800FC1597 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		256250472848868800FC1597 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2562504A2848868800FC1597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2562504C2848868B00FC1597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2562504F2848868B00FC1597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		256250512848868B00FC1597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256250572848895400FC1597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2562505928489D9400FC1597 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2562505B28489DA800FC1597 /* RegistUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserViewController.swift; sourceTree = "<group>"; };
+		2562505D28489DBB00FC1597 /* SearchPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostViewController.swift; sourceTree = "<group>"; };
+		2562505F28489DC700FC1597 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		2562506128489DEE00FC1597 /* SuccessPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPostViewController.swift; sourceTree = "<group>"; };
+		2562506328489DFD00FC1597 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2562506528489E0600FC1597 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		256250672848A97700FC1597 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
+		256250692849939500FC1597 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		2562506B28499B1C00FC1597 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2562506D2849ABCC00FC1597 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		2562506F2849D55D00FC1597 /* ChangeProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeProfileViewController.swift; sourceTree = "<group>"; };
+		256250712849EA0000FC1597 /* FavoriteGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteGroupTableViewCell.swift; sourceTree = "<group>"; };
+		256250722849EA0000FC1597 /* FavoriteGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteGroupTableViewCell.xib; sourceTree = "<group>"; };
+		25625076284D8B4900FC1597 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		25625078284ECFFA00FC1597 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		25D2804A28503679002E056D /* SearchPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostTableViewCell.swift; sourceTree = "<group>"; };
+		25D2804B28503679002E056D /* SearchPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostTableViewCell.xib; sourceTree = "<group>"; };
+		25D2804E28505E39002E056D /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		25D28050285190D0002E056D /* Prefectures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefectures.swift; sourceTree = "<group>"; };
+		25EF33A3284EEF6100966A34 /* Purposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purposes.swift; sourceTree = "<group>"; };
 		C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.release.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.release.xcconfig"; sourceTree = "<group>"; };
 		F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.debug.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,7 +90,6 @@
 				F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */,
 				C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,14 +116,50 @@
 			children = (
 				256250432848868800FC1597 /* AppDelegate.swift */,
 				256250452848868800FC1597 /* SceneDelegate.swift */,
-				256250472848868800FC1597 /* ViewController.swift */,
+				2562505B28489DA800FC1597 /* RegistUserViewController.swift */,
+				2562505928489D9400FC1597 /* LoginViewController.swift */,
+				256250692849939500FC1597 /* NewsViewController.swift */,
+				2562506528489E0600FC1597 /* MapViewController.swift */,
+				2562505F28489DC700FC1597 /* DetailPostViewController.swift */,
+				2562506128489DEE00FC1597 /* SuccessPostViewController.swift */,
+				25625078284ECFFA00FC1597 /* PostViewController.swift */,
+				25D280492850364E002E056D /* 検索 */,
+				256250752849EA1700FC1597 /* 設定 */,
 				256250492848868800FC1597 /* Main.storyboard */,
+				25D28050285190D0002E056D /* Prefectures.swift */,
+				256250672848A97700FC1597 /* Places.swift */,
+				25EF33A3284EEF6100966A34 /* Purposes.swift */,
+				2562506D2849ABCC00FC1597 /* Const.swift */,
+				25625076284D8B4900FC1597 /* UserData.swift */,
+				25D2804E28505E39002E056D /* PostData.swift */,
+				2562506B28499B1C00FC1597 /* TabBarController.swift */,
 				2562504C2848868B00FC1597 /* Assets.xcassets */,
 				2562504E2848868B00FC1597 /* LaunchScreen.storyboard */,
 				256250572848895400FC1597 /* GoogleService-Info.plist */,
 				256250512848868B00FC1597 /* Info.plist */,
 			);
 			path = MeetLive;
+			sourceTree = "<group>";
+		};
+		256250752849EA1700FC1597 /* 設定 */ = {
+			isa = PBXGroup;
+			children = (
+				2562506328489DFD00FC1597 /* SettingViewController.swift */,
+				2562506F2849D55D00FC1597 /* ChangeProfileViewController.swift */,
+				256250712849EA0000FC1597 /* FavoriteGroupTableViewCell.swift */,
+				256250722849EA0000FC1597 /* FavoriteGroupTableViewCell.xib */,
+			);
+			path = "設定";
+			sourceTree = "<group>";
+		};
+		25D280492850364E002E056D /* 検索 */ = {
+			isa = PBXGroup;
+			children = (
+				2562505D28489DBB00FC1597 /* SearchPostViewController.swift */,
+				25D2804A28503679002E056D /* SearchPostTableViewCell.swift */,
+				25D2804B28503679002E056D /* SearchPostTableViewCell.xib */,
+			);
+			path = "検索";
 			sourceTree = "<group>";
 		};
 		830FD214298476C88B534C8A /* Frameworks */ = {
@@ -155,10 +230,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256250742849EA0100FC1597 /* FavoriteGroupTableViewCell.xib in Resources */,
 				256250502848868B00FC1597 /* LaunchScreen.storyboard in Resources */,
 				256250582848895400FC1597 /* GoogleService-Info.plist in Resources */,
 				2562504D2848868B00FC1597 /* Assets.xcassets in Resources */,
 				2562504B2848868800FC1597 /* Main.storyboard in Resources */,
+				25D2804D28503679002E056D /* SearchPostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,9 +288,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256250482848868800FC1597 /* ViewController.swift in Sources */,
+				2562506228489DEE00FC1597 /* SuccessPostViewController.swift in Sources */,
+				2562505C28489DA800FC1597 /* RegistUserViewController.swift in Sources */,
+				25625077284D8B4900FC1597 /* UserData.swift in Sources */,
+				25625079284ECFFA00FC1597 /* PostViewController.swift in Sources */,
+				256250732849EA0100FC1597 /* FavoriteGroupTableViewCell.swift in Sources */,
+				25D2804F28505E39002E056D /* PostData.swift in Sources */,
+				2562506028489DC700FC1597 /* DetailPostViewController.swift in Sources */,
+				25D2804C28503679002E056D /* SearchPostTableViewCell.swift in Sources */,
+				2562506A2849939500FC1597 /* NewsViewController.swift in Sources */,
+				2562506628489E0600FC1597 /* MapViewController.swift in Sources */,
+				2562505A28489D9400FC1597 /* LoginViewController.swift in Sources */,
+				256250702849D55D00FC1597 /* ChangeProfileViewController.swift in Sources */,
+				2562505E28489DBB00FC1597 /* SearchPostViewController.swift in Sources */,
+				2562506428489DFD00FC1597 /* SettingViewController.swift in Sources */,
+				256250682848A97700FC1597 /* Places.swift in Sources */,
+				2562506C28499B1C00FC1597 /* TabBarController.swift in Sources */,
 				256250442848868800FC1597 /* AppDelegate.swift in Sources */,
+				25D28051285190D0002E056D /* Prefectures.swift in Sources */,
 				256250462848868800FC1597 /* SceneDelegate.swift in Sources */,
+				25EF33A4284EEF6100966A34 /* Purposes.swift in Sources */,
+				2562506E2849ABCD00FC1597 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +460,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeetLive/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "本アプリは、プロフィール画像設定のため、カメラの使用許可を求めます。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "本アプリは、プロフィール画像設定のため、フォトライブラリの使用許可を求めます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -393,6 +490,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeetLive/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "本アプリは、プロフィール画像設定のため、カメラの使用許可を求めます。";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "本アプリは、プロフィール画像設定のため、フォトライブラリの使用許可を求めます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

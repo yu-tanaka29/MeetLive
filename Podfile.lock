@@ -498,6 +498,8 @@ PODS:
   - SDWebImage (5.12.5):
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
+  - SVProgressHUD (2.2.5)
+  - YSCheckBox (0.0.1)
 
 DEPENDENCIES:
   - Firebase (= 8.9.1)
@@ -506,6 +508,8 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseUI/Storage
+  - SVProgressHUD (= 2.2.5)
+  - YSCheckBox (from `https://github.com/sekies/YSCheckBox.git`)
 
 SPEC REPOS:
   trunk:
@@ -531,6 +535,16 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - SVProgressHUD
+
+EXTERNAL SOURCES:
+  YSCheckBox:
+    :git: https://github.com/sekies/YSCheckBox.git
+
+CHECKOUT OPTIONS:
+  YSCheckBox:
+    :commit: b7220246caec53ddf0ef9ae401b6563f2c622920
+    :git: https://github.com/sekies/YSCheckBox.git
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -555,7 +569,9 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  YSCheckBox: 2f6b5e8d66784ba34844093a84198dcecdf69afa
 
-PODFILE CHECKSUM: 933cec1570fd8fee13d599af1312a8dd685d54c7
+PODFILE CHECKSUM: 2a13ea3e693dfcb747d0cb5c6e2bd64149b72e35
 
 COCOAPODS: 1.11.3
