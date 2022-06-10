@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import UIKit
 
-class Purposes {
+struct Purposes {
     let purposes: [String] = [
         "会場内で会いたい",
         "会場外で会いたい",
@@ -27,7 +26,7 @@ class Purposes {
         "その他"
     ]
     
-    let colorPurposes: [[CGFloat]] = [
+    let colorPurposes: [[Float]] = [
         [255,75,0],
         [0,90,255],
         [3,175,122],

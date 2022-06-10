@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Places {
+struct Places {
     let places =
     ["北海道 札幌ドーム",
      "北海道 真駒内セキスイハイムアイスアリーナ",

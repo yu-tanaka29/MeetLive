@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Prefectures {
+struct Prefectures {
     let prefectures: [String] = [
         "北海道",
         "青森県",

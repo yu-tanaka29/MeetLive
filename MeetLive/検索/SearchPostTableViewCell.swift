@@ -27,7 +27,7 @@ class SearchPostTableViewCell: UITableViewCell {
     // MARK: - メンバ変数
     let places: [String] = Places().places
     let purposes: [String] = Purposes().displayPurposes
-    let colorPurposes: [[CGFloat]] = Purposes().colorPurposes
+    let colorPurposes: [[Float]] = Purposes().colorPurposes
     var userArray: UserData? // ユーザー情報
     
     override func awakeFromNib() {
@@ -86,8 +86,8 @@ class SearchPostTableViewCell: UITableViewCell {
                 
                 if let purposeId = postData.purpose_id {
                     self.tagText.text = self.purposes[purposeId]
-                    self.tagImage.tintColor = UIColor(red: self.colorPurposes[purposeId][0]/255, green: self.colorPurposes[purposeId][1]/255, blue: self.colorPurposes[purposeId][2]/255, alpha: 1)
-                    self.tagText.textColor = UIColor(red: self.colorPurposes[purposeId][0]/255, green: self.colorPurposes[purposeId][1]/255, blue: self.colorPurposes[purposeId][2]/255, alpha: 1)
+                    self.tagImage.tintColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
+                    self.tagText.textColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
                 }
             }
         }

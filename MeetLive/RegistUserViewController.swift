@@ -36,49 +36,59 @@ class RegistUserViewController: UIViewController {
     ///
     /// - Parameter sender: UIButton
     @IBAction func registButtonTapped(_ sender: UIButton) {
-        if let address = self.mailField.text, let password = self.passwordField.text, let name = self.nameField.text {
-            // HUDで処理中を表示
-            SVProgressHUD.show()
+        guard let address = self.mailField.text else {
+            return
+        }
+        
+        guard let password = self.passwordField.text else {
+            return
+        }
+        
+        guard let name = self.nameField.text else {
+            return
+        }
+        
+        // HUDで処理中を表示
+        SVProgressHUD.show()
             
-            // アドレスとパスワードでユーザー作成。ユーザー作成に成功すると、自動的にログインする
-            Auth.auth().createUser(withEmail: address, password: password) { authResult, error in
-                if let error = error {
-                    // エラーがあったら原因をprintして、returnすることで以降の処理を実行せずに処理を終了する
-                    print("DEBUG_PRINT: " + error.localizedDescription)
-                    SVProgressHUD.showError(withStatus: "ユーザー作成に失敗しました。")
-                    return
-                }
-                print("DEBUG_PRINT: ユーザー作成に成功しました。")
+        // アドレスとパスワードでユーザー作成。ユーザー作成に成功すると、自動的にログインする
+        Auth.auth().createUser(withEmail: address, password: password) { authResult, error in
+            if let error = error {
+                // エラーがあったら原因をprintして、returnすることで以降の処理を実行せずに処理を終了する
+                print("DEBUG_PRINT: " + error.localizedDescription)
+                SVProgressHUD.showError(withStatus: "ユーザー作成に失敗しました。")
+                return
+            }
+            print("DEBUG_PRINT: ユーザー作成に成功しました。")
                 
-                // 表示名を設定する
-                let user = Auth.auth().currentUser
-                if let user = user {
-                    let changeRequest = user.createProfileChangeRequest() // リクエスト作成
-                    changeRequest.displayName = name // リクエスト内容を入れる
-                    changeRequest.commitChanges { error in // リクエスト送信
-                        if let error = error {
-                            // プロフィールの更新でエラーが発生
-                            print("DEBUG_PRINT: " + error.localizedDescription)
-                            SVProgressHUD.showError(withStatus: "表示名の設定に失敗しました。")
-                            return
-                        }
-                        print("DEBUG_PRINT: [displayName = \(user.displayName!)]の設定に成功しました。")
-                        
-                        // usersコレクションにドキュメント追加
-                        let postRef = Firestore.firestore().collection(Const.UserPath).document(user.uid) // 投稿場所
-                        let postDic = [
-                            "name": name, // 表示名
-                            "date": FieldValue.serverTimestamp(), // 更新時刻
-                            "imageFlg": 0,
-                            ] as [String : Any]
-                        postRef.setData(postDic) // 追加
+            // 表示名を設定する
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let changeRequest = user.createProfileChangeRequest() // リクエスト作成
+                changeRequest.displayName = name // リクエスト内容を入れる
+                changeRequest.commitChanges { error in // リクエスト送信
+                    if let error = error {
+                        // プロフィールの更新でエラーが発生
+                        print("DEBUG_PRINT: " + error.localizedDescription)
+                        SVProgressHUD.showError(withStatus: "表示名の設定に失敗しました。")
+                        return
                     }
+                    print("DEBUG_PRINT: [displayName = \(user.displayName!)]の設定に成功しました。")
                     
-                    // HUDを消す
-                    SVProgressHUD.dismiss()
-                    // 画面を閉じてタブ画面に戻る
-                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    // usersコレクションにドキュメント追加
+                    let postRef = Firestore.firestore().collection(Const.UserPath).document(user.uid) // 投稿場所
+                    let postDic = [
+                        "name": name, // 表示名
+                        "date": FieldValue.serverTimestamp(), // 更新時刻
+                        "imageFlg": 0,
+                        ] as [String : Any]
+                    postRef.setData(postDic) // 追加
                 }
+                
+                // HUDを消す
+                SVProgressHUD.dismiss()
+                // 画面を閉じてタブ画面に戻る
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -90,14 +100,13 @@ class RegistUserViewController: UIViewController {
     /// - Parameter sender: UITextField
     @objc private func textFieldDidChange(sender: UITextField) {
         // アカウント作成の入力チェック
-        if let address = self.mailField.text, let password = self.passwordField.text, let name = self.nameField.text {
+        if let address = self.mailField.text, !address.isEmpty,
+           let password = self.passwordField.text, password.count >= 6,
+           let name = self.nameField.text, !name.isEmpty {
             
-            // // アドレスとパスワード6文字以上と表示名が入力されていない場合はボタンを押せなくする
-            if !address.isEmpty && password.count >= 6 && !name.isEmpty {
-                self.registButton.isEnabled = true
-            } else {
-                self.registButton.isEnabled = false
-            }
+            self.registButton.isEnabled = true
+        } else {
+            self.registButton.isEnabled = false
         }
     }
     

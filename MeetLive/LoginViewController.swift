@@ -35,24 +35,30 @@ class LoginViewController: UIViewController {
     /// - Parameter sender: UIButton
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         // アンラップできた = 箱がある
-        if let address = self.mailField.text, let password = self.passwordField.text {
-            // HUDで処理中を表示
-            SVProgressHUD.show()
+        guard let address = self.mailField.text else{
+            return
+        }
+        
+        guard let password = self.passwordField.text else {
+            return
+        }
+        
+        // HUDで処理中を表示
+        SVProgressHUD.show()
 
-            Auth.auth().signIn(withEmail: address, password: password) { authResult, error in
-                if let error = error {
-                    print("DEBUG_PRINT: " + error.localizedDescription)
-                    SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
-                    return
-                }
-                print("DEBUG_PRINT: ログインに成功しました。")
-                
-                // HUDを消す
-                SVProgressHUD.dismiss()
-
-                // 画面を閉じてタブ画面に戻る
-                self.dismiss(animated: true, completion: nil)
+        Auth.auth().signIn(withEmail: address, password: password) { authResult, error in
+            if let error = error {
+                print("DEBUG_PRINT: " + error.localizedDescription)
+                SVProgressHUD.showError(withStatus: "サインインに失敗しました。")
+                return
             }
+            print("DEBUG_PRINT: ログインに成功しました。")
+            
+            // HUDを消す
+            SVProgressHUD.dismiss()
+
+            // 画面を閉じてタブ画面に戻る
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -62,14 +68,12 @@ class LoginViewController: UIViewController {
     /// - Parameter sender: UITextField
     @objc private func textFieldDidChange(sender: UITextField) {
         // ログインの入力チェック
-        if let address = self.mailField.text, let password = self.passwordField.text {
-
-            // アドレスとパスワード6文字以上入力されていない場合はボタンを押せなくする
-            if !address.isEmpty && password.count >= 6 {
-                self.loginButton.isEnabled = true
-            } else {
-                self.loginButton.isEnabled = false
-            }
+        if let address = self.mailField.text, !address.isEmpty,
+           let password = self.passwordField.text, !password.isEmpty {
+            
+            self.loginButton.isEnabled = true
+        } else {
+            self.loginButton.isEnabled = false
         }
     }
 }

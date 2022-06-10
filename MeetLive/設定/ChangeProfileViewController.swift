@@ -22,13 +22,13 @@ class ChangeProfileViewController: UIViewController {
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var PersonalChangeButton: UIButton!
     // グループ・推しメン関連
-    var userArray: UserData?
     @IBOutlet weak var groupField: UITextField!
     @IBOutlet weak var memberField: UITextField!
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - メンバ変数
+    var userArray: UserData?
     var pickerView: UIPickerView = UIPickerView()
     let gender = ["男性", "女性"]
     // Firestoreのリスナーの定義

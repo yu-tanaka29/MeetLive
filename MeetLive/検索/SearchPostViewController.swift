@@ -32,9 +32,7 @@ class SearchPostViewController: UIViewController {
     var checkList: [Int] = []
     var groupName: String = ""
     var groupPickerView: UIPickerView = UIPickerView() // グループ選択用UIPickerView
-    let places: [String] = Places().places // 会場一覧が格納された配列
     var placePickerView: UIPickerView = UIPickerView() // 会場選択用UIPickerView
-    let prefectures: [String] = Prefectures().prefectures // 都道府県一覧が格納された配列
     var prefecturePickerView: UIPickerView = UIPickerView() // 都道府県選択用PickerView
     var pickerSw: Int = 0
     
@@ -89,13 +87,6 @@ class SearchPostViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.chooseGroupField.text = ""
-        self.groupName = ""
-        self.choosePlaceField.text = ""
-        self.choosePrefectureField.text = ""
-        
-        
-        
         // ログイン済みか確認
         if let user = Auth.auth().currentUser {
             let userRef = Firestore.firestore().collection(Const.UserPath).document(user.uid) //情報を取得する場所を決定
@@ -187,13 +178,11 @@ class SearchPostViewController: UIViewController {
             print(postsRef)
         }
         
-        if let place = self.choosePlaceField.text, !place.isEmpty {
-            if place == "その他" {
-                if let prefecture = self.choosePrefectureField.text, !prefecture.isEmpty {
-                    postsRef = postsRef.whereField("prefecture", isEqualTo: prefecture)
-                }
+        if let place = self.choosePlaceField.text, !place.isEmpty, place == "その他" {
+            if let prefecture = self.choosePrefectureField.text, !prefecture.isEmpty {
+                postsRef = postsRef.whereField("prefecture", isEqualTo: prefecture)
             } else {
-                postsRef = postsRef.whereField("place_id", isEqualTo: self.places.firstIndex(of: place)!)
+                postsRef = postsRef.whereField("place_id", isEqualTo: Places().places.firstIndex(of: place)!)
             }
         }
         
@@ -228,14 +217,14 @@ class SearchPostViewController: UIViewController {
                 self.chooseGroupField.text = "\(member!)(\(group!))"
                 self.groupName = group!
             case 2:
-                self.choosePlaceField.text = self.places[self.placePickerView.selectedRow(inComponent: 0)]
-                if self.places[self.placePickerView.selectedRow(inComponent: 0)] == "その他" {
+                self.choosePlaceField.text = Places().places[self.placePickerView.selectedRow(inComponent: 0)]
+                if Places().places[self.placePickerView.selectedRow(inComponent: 0)] == "その他" {
                     self.choosePrefectureField.isHidden = false
                 } else {
                     self.choosePrefectureField.isHidden = true
                 }
             case 3:
-                self.choosePrefectureField.text = self.prefectures[self.prefecturePickerView.selectedRow(inComponent: 0)]
+                self.choosePrefectureField.text = Prefectures().prefectures[self.prefecturePickerView.selectedRow(inComponent: 0)]
             default:
                 break
         }
@@ -272,6 +261,15 @@ extension SearchPostViewController: UITableViewDelegate,UITableViewDataSource {
         cell.setPostData(self.postArray[indexPath.row])
         return cell
     }
+    
+    
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // セルの選択を解除
+       tableView.deselectRow(at: indexPath, animated: true)
+       let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailPostViewController
+       nextVC.postArray.append(self.postArray[indexPath.row])
+       self.navigationController?.pushViewController(nextVC, animated: true)
+   }
 }
 
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
@@ -295,9 +293,9 @@ extension SearchPostViewController: UIPickerViewDelegate, UIPickerViewDataSource
             case 1:
                 return self.userArray?.groups.count ?? 0
             case 2:
-                return self.places.count
+                return Places().places.count
             case 3:
-                return self.prefectures.count
+                return Prefectures().prefectures.count
             default:
                 return 0
         }
@@ -320,10 +318,10 @@ extension SearchPostViewController: UIPickerViewDelegate, UIPickerViewDataSource
             }
         } else if pickerView.tag == 2{
             self.pickerSw = 2
-            return self.places[row]
+            return Places().places[row]
         } else {
             self.pickerSw = 3
-            return self.prefectures[row]
+            return Prefectures().prefectures[row]
         }
     }
     

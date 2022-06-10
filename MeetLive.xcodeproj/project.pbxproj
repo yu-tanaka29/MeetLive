@@ -34,6 +34,9 @@
 		25D2804D28503679002E056D /* SearchPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D2804B28503679002E056D /* SearchPostTableViewCell.xib */; };
 		25D2804F28505E39002E056D /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D2804E28505E39002E056D /* PostData.swift */; };
 		25D28051285190D0002E056D /* Prefectures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D28050285190D0002E056D /* Prefectures.swift */; };
+		25D280542852D951002E056D /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D280522852D951002E056D /* DetailPostTableViewCell.swift */; };
+		25D280552852D951002E056D /* DetailPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D280532852D951002E056D /* DetailPostTableViewCell.xib */; };
+		25D280572852DDFE002E056D /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D280562852DDFE002E056D /* CustomLabel.swift */; };
 		25EF33A4284EEF6100966A34 /* Purposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EF33A3284EEF6100966A34 /* Purposes.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		25D2804B28503679002E056D /* SearchPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostTableViewCell.xib; sourceTree = "<group>"; };
 		25D2804E28505E39002E056D /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		25D28050285190D0002E056D /* Prefectures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefectures.swift; sourceTree = "<group>"; };
+		25D280522852D951002E056D /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
+		25D280532852D951002E056D /* DetailPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPostTableViewCell.xib; sourceTree = "<group>"; };
+		25D280562852DDFE002E056D /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		25EF33A3284EEF6100966A34 /* Purposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purposes.swift; sourceTree = "<group>"; };
 		C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.release.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.release.xcconfig"; sourceTree = "<group>"; };
 		F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.debug.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +126,6 @@
 				2562505928489D9400FC1597 /* LoginViewController.swift */,
 				256250692849939500FC1597 /* NewsViewController.swift */,
 				2562506528489E0600FC1597 /* MapViewController.swift */,
-				2562505F28489DC700FC1597 /* DetailPostViewController.swift */,
 				2562506128489DEE00FC1597 /* SuccessPostViewController.swift */,
 				25625078284ECFFA00FC1597 /* PostViewController.swift */,
 				25D280492850364E002E056D /* 検索 */,
@@ -158,6 +163,10 @@
 				2562505D28489DBB00FC1597 /* SearchPostViewController.swift */,
 				25D2804A28503679002E056D /* SearchPostTableViewCell.swift */,
 				25D2804B28503679002E056D /* SearchPostTableViewCell.xib */,
+				2562505F28489DC700FC1597 /* DetailPostViewController.swift */,
+				25D280522852D951002E056D /* DetailPostTableViewCell.swift */,
+				25D280532852D951002E056D /* DetailPostTableViewCell.xib */,
+				25D280562852DDFE002E056D /* CustomLabel.swift */,
 			);
 			path = "検索";
 			sourceTree = "<group>";
@@ -230,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25D280552852D951002E056D /* DetailPostTableViewCell.xib in Resources */,
 				256250742849EA0100FC1597 /* FavoriteGroupTableViewCell.xib in Resources */,
 				256250502848868B00FC1597 /* LaunchScreen.storyboard in Resources */,
 				256250582848895400FC1597 /* GoogleService-Info.plist in Resources */,
@@ -294,6 +304,7 @@
 				25625079284ECFFA00FC1597 /* PostViewController.swift in Sources */,
 				256250732849EA0100FC1597 /* FavoriteGroupTableViewCell.swift in Sources */,
 				25D2804F28505E39002E056D /* PostData.swift in Sources */,
+				25D280542852D951002E056D /* DetailPostTableViewCell.swift in Sources */,
 				2562506028489DC700FC1597 /* DetailPostViewController.swift in Sources */,
 				25D2804C28503679002E056D /* SearchPostTableViewCell.swift in Sources */,
 				2562506A2849939500FC1597 /* NewsViewController.swift in Sources */,
@@ -303,6 +314,7 @@
 				2562505E28489DBB00FC1597 /* SearchPostViewController.swift in Sources */,
 				2562506428489DFD00FC1597 /* SettingViewController.swift in Sources */,
 				256250682848A97700FC1597 /* Places.swift in Sources */,
+				25D280572852DDFE002E056D /* CustomLabel.swift in Sources */,
 				2562506C28499B1C00FC1597 /* TabBarController.swift in Sources */,
 				256250442848868800FC1597 /* AppDelegate.swift in Sources */,
 				25D28051285190D0002E056D /* Prefectures.swift in Sources */,
