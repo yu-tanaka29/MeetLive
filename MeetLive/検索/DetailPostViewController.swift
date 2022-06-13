@@ -42,8 +42,6 @@ class DetailPostViewController: UIViewController {
         // カスタムセルを登録する
         let nib = UINib(nibName: "DetailPostTableViewCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "DetailPostCell")
-        self.tableView.estimatedRowHeight = 200
-        self.tableView.rowHeight = UITableView.automaticDimension
         
         // 枠のカラー
         self.commentField.layer.borderColor = CGColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
@@ -99,8 +97,6 @@ class DetailPostViewController: UIViewController {
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postId) // 変更カラム取得
         postRef.updateData(["comments": updateValue])// 変更依頼送信
         self.commentField.text = ""
-        
-        tableView.reloadData()
     }
     
     
@@ -150,6 +146,10 @@ class DetailPostViewController: UIViewController {
                 if postData.comments.count != 0 {
                     print("reverse")
                     postData.comments.reverse()
+                    
+                    for comment in postData.comments {
+                        
+                    }
                     self.tableView.reloadData()
                 }
                 

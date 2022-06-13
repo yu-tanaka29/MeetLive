@@ -37,6 +37,7 @@ class DetailPostTableViewCell: UITableViewCell {
     
     // MARK: - Private Methods
     func setComment(data: [String: Any]) {
+        self.contentLabel.text = data["comment"] as? String
         var commenterArray: UserData?
         let userRef = Firestore.firestore().collection(Const.UserPath).document(data["user_id"] as! String) //情報を取得する場所を決定
         userRef.getDocument { (querySnapshot, error) in
@@ -60,7 +61,6 @@ class DetailPostTableViewCell: UITableViewCell {
             
             self.personalLabel.text = "\(age)歳・\(gender)"
             self.nameLabel.text =  commenterArray?.name
-            self.contentLabel.text = data["comment"] as? String
             
             let date = (data["date"] as! Timestamp).dateValue()
             let formatter = DateFormatter() // フォーマットのインスタンス生成
