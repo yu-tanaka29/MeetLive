@@ -103,7 +103,6 @@ class SearchPostViewController: UIViewController {
     }
     
     // MARK: - IBAction
-    
     @IBAction func hideButtonTapped(_ sender: UIButton) {
         if self.hideButton.currentTitle == "閉じる" {
             self.hideButton.setTitle("開く", for: .normal)
@@ -267,7 +266,8 @@ extension SearchPostViewController: UITableViewDelegate,UITableViewDataSource {
        // セルの選択を解除
        tableView.deselectRow(at: indexPath, animated: true)
        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailPostViewController
-       nextVC.postArray.append(self.postArray[indexPath.row])
+       nextVC.postId = self.postArray[indexPath.row].id!
+       print(self.postArray[indexPath.row].id!)
        self.navigationController?.pushViewController(nextVC, animated: true)
    }
 }

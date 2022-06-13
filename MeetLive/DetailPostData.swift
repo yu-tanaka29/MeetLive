@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class PostData: NSObject {
+class DetailPostData: NSObject {
     var id: String?
     var title: String?
     var place_id: Int?
@@ -27,10 +27,12 @@ class PostData: NSObject {
     var place: String?
     var purpose: String?
     
-    init(document: QueryDocumentSnapshot) {
+    init(document: DocumentSnapshot) {
         self.id = document.documentID
 
-        let postDic = document.data()
+        guard let postDic = document.data() else {
+            return
+        }
         
         self.title = postDic["title"] as? String
         

@@ -65,15 +65,15 @@ class SearchPostTableViewCell: UITableViewCell {
                 }
                 
                 if let placeId = postData.place_id {
-                    self.placeLabel.text = "会場: \(self.places[placeId])"
+                    self.placeLabel.text = self.places[placeId]
                 }
                 
                 if let groupName = postData.group_name, let memberName = postData.member_name {
-                    self.groupLabel.text = "推し: \(memberName)(\(groupName))"
+                    self.groupLabel.text = "\(memberName)(\(groupName))"
                 }
                 
                 if let content = postData.content {
-                    self.contentLabel.text = "内容: \(content)"
+                    self.contentLabel.text = content
                 }
                 
                 if let gender = self.userArray?.gender, let age = self.userArray?.age {

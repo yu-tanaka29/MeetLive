@@ -1035,7 +1035,6 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2gP-1g-09g">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="70"/>
-                                        <color key="backgroundColor" red="1" green="0.73198282429999995" blue="0.34073311360000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="3Fe-3M-7tE"/>
                                         </constraints>
@@ -1048,6 +1047,9 @@
                                         <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="sendCommentButtonTapped:" destination="222-SO-1Xz" eventType="touchUpInside" id="tIA-Lg-dlY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1648,6 +1650,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2eV-gZ-A7I">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1667,6 +1673,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CBI-9U-Gn0">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1686,9 +1696,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Y4-wr-oCk">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.99215686270000003" green="0.77647058820000003" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.99215686270000003" green="0.77647058820000003" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1709,6 +1719,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ylw-4L-UgC">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1728,6 +1742,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X2K-vJ-Ie1">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="0.68101529179999998" blue="0.043675637160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

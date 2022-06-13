@@ -37,6 +37,7 @@
 		25D280542852D951002E056D /* DetailPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D280522852D951002E056D /* DetailPostTableViewCell.swift */; };
 		25D280552852D951002E056D /* DetailPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D280532852D951002E056D /* DetailPostTableViewCell.xib */; };
 		25D280572852DDFE002E056D /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D280562852DDFE002E056D /* CustomLabel.swift */; };
+		25D280592856C327002E056D /* DetailPostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D280582856C327002E056D /* DetailPostData.swift */; };
 		25EF33A4284EEF6100966A34 /* Purposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EF33A3284EEF6100966A34 /* Purposes.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		25D280522852D951002E056D /* DetailPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostTableViewCell.swift; sourceTree = "<group>"; };
 		25D280532852D951002E056D /* DetailPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPostTableViewCell.xib; sourceTree = "<group>"; };
 		25D280562852DDFE002E056D /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		25D280582856C327002E056D /* DetailPostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostData.swift; sourceTree = "<group>"; };
 		25EF33A3284EEF6100966A34 /* Purposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purposes.swift; sourceTree = "<group>"; };
 		C52149E9F95B950DDEFCBD9D /* Pods-MeetLive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.release.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.release.xcconfig"; sourceTree = "<group>"; };
 		F4399792AFC21A2ECAB67115 /* Pods-MeetLive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeetLive.debug.xcconfig"; path = "Target Support Files/Pods-MeetLive/Pods-MeetLive.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				2562506D2849ABCC00FC1597 /* Const.swift */,
 				25625076284D8B4900FC1597 /* UserData.swift */,
 				25D2804E28505E39002E056D /* PostData.swift */,
+				25D280582856C327002E056D /* DetailPostData.swift */,
 				2562506B28499B1C00FC1597 /* TabBarController.swift */,
 				2562504C2848868B00FC1597 /* Assets.xcassets */,
 				2562504E2848868B00FC1597 /* LaunchScreen.storyboard */,
@@ -300,6 +303,7 @@
 			files = (
 				2562506228489DEE00FC1597 /* SuccessPostViewController.swift in Sources */,
 				2562505C28489DA800FC1597 /* RegistUserViewController.swift in Sources */,
+				25D280592856C327002E056D /* DetailPostData.swift in Sources */,
 				25625077284D8B4900FC1597 /* UserData.swift in Sources */,
 				25625079284ECFFA00FC1597 /* PostViewController.swift in Sources */,
 				256250732849EA0100FC1597 /* FavoriteGroupTableViewCell.swift in Sources */,

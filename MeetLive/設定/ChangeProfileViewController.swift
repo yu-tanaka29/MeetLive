@@ -94,7 +94,6 @@ class ChangeProfileViewController: UIViewController {
                     // 画像をダウンロードして表示(sd_setimage)
                     self.Profileimage.sd_setImage(with: imageRef)
                     self.Profileimage.backgroundColor = .white
-
                 }
                 // TableViewの表示を更新する
                 self.tableView.reloadData()
@@ -214,6 +213,17 @@ class ChangeProfileViewController: UIViewController {
             }
         }
     }
+    
+    func setImage() {
+        if self.userArray?.imageFlg == 1 {
+            self.Profileimage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            // 取ってくる画像の場所を指定
+            let imageRef = Storage.storage().reference().child(Const.ImagePath).child(self.userArray!.id + ".jpg")
+            // 画像をダウンロードして表示(sd_setimage)
+            self.Profileimage.sd_setImage(with: imageRef, maxImageSize: 1 * 1024 * 1024, placeholderImage: nil, options: .refreshCached, completion: nil)
+            self.Profileimage.backgroundColor = .white
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -280,7 +290,6 @@ extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINaviga
         if info[.originalImage] != nil {
             // 撮影/選択された画像を取得する
             let image = info[.originalImage] as! UIImage
-            self.Profileimage.image = image
             self.Profileimage.backgroundColor = .white
             
             // 画像をJPEG形式に変換する(1.0が1番画質高く、0が1番低い)
@@ -289,6 +298,7 @@ extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINaviga
             
             let metadata = StorageMetadata() // タイプを決定したりプレビューを表示できるようにする
             metadata.contentType = "image/jpeg"
+            
             if let imageData = imageData {
                 imageRef.putData(imageData, metadata: metadata) { (metadata, error) in
                     if let error = error {
@@ -300,6 +310,8 @@ extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINaviga
                     
                     let postRef = Firestore.firestore().collection(Const.UserPath).document(self.userArray!.id) // 変更カラム取得
                     postRef.setData(["imageFlg": 1], merge: true)
+                
+                    self.setImage()
                 }
             }
         }
