@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
 
             // 画面を閉じてタブ画面に戻る
             self.dismiss(animated: true, completion: nil)
+            
         }
     }
     

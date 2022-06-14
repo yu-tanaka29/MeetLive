@@ -15,10 +15,12 @@ class UserData: NSObject {
     var age: String?
     var groups: [[String: String]] = []
     var imageFlg: Int?
+    var num: Int?
     
-    init(document: DocumentSnapshot) {
+    init(document: DocumentSnapshot, num: Int) {
         self.id = document.documentID
-
+        
+        self.num = num
         if let userDic = document.data() {
 
             if let name = userDic["name"] as? String {

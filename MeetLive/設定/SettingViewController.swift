@@ -37,6 +37,7 @@ class SettingViewController: UIViewController {
             self.present(loginViewController!, animated: true, completion: nil)
             // ログイン画面から戻ってきた時のために検索画面（index = 2）を選択している状態にしておく
             self.tabBarController?.selectedIndex = 2
+            
         }
 
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { action in

@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
+import CoreLocation
 
 class DetailPostViewController: UIViewController {
 
@@ -23,15 +25,15 @@ class DetailPostViewController: UIViewController {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var commentField: UITextView!
     @IBOutlet weak var sendCommentButton: UIButton!
+    @IBOutlet weak var sendPositionButton: UIButton!
     
     // MARK: - メンバ変数
-    var postArray: DetailPostData?
+    var postArray: DetailPostData? // 投稿情報
     var postId = ""
-    let places: [String] = Places().places
-    let purposes: [String] = Purposes().displayPurposes
-    let colorPurposes: [[Float]] = Purposes().colorPurposes
     var userArray: UserData? // ユーザー情報
+    var commenterArray: [UserData] = [] // コメント一覧情報
     var listener: ListenerRegistration? // Firestoreのリスナーの定義
+    var locationManager : CLLocationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,9 @@ class DetailPostViewController: UIViewController {
         self.commentField.delegate = self
         
         self.sendCommentButton.isEnabled = false
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager!.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +69,10 @@ class DetailPostViewController: UIViewController {
             self.postArray = DetailPostData(document: (querySnapshot.self)!)
             self.setPostData(self.postArray!)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - IBAction
@@ -89,27 +98,52 @@ class DetailPostViewController: UIViewController {
         var updateValue: FieldValue
         updateValue = FieldValue.arrayUnion(value)
         
-        // likesに更新データを書き込む
-        guard let postId = self.postArray!.id else {
-            return
-        }
-        
-        let postRef = Firestore.firestore().collection(Const.PostPath).document(postId) // 変更カラム取得
+        let postRef = Firestore.firestore().collection(Const.PostPath).document(self.postId) // 変更カラム取得
         postRef.updateData(["comments": updateValue])// 変更依頼送信
         self.commentField.text = ""
     }
+    
+    @IBAction func sendPositionButtonTapped(_ sender: Any) {
+        self.locationManager!.requestWhenInUseAuthorization()
+        
+        //位置情報を使用可能か
+        if CLLocationManager.locationServicesEnabled() {
+             //位置情報の取得開始
+            self.locationManager!.startUpdatingLocation()
+        }
+    }
+    
     
     
     // MARK: - Private Methods
     func setPostData(_ postData: DetailPostData) {
         if let posterId = postData.poster_id {
+            if postData.comments.count != 0 {
+                self.commenterArray.removeAll()
+                postData.comments.reverse()
+                
+                for i in 0 ..< postData.comments.count {
+                    let userRef = Firestore.firestore().collection(Const.UserPath).document(postData.comments[i]["user_id"] as! String) //情報を取得する場所を決定
+                    userRef.getDocument { (querySnapshot, error) in
+                        if let error = error {
+                            print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
+                            return
+                        }
+                        self.commenterArray.append(UserData(document: querySnapshot!, num: i))
+                        if self.commenterArray.count == postData.comments.count {
+                            self.commenterArray.sort(by: {$0.num! < $1.num!})
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
             let userRef = Firestore.firestore().collection(Const.UserPath).document(posterId) //情報を取得する場所を決定
             userRef.getDocument { (querySnapshot, error) in
                 if let error = error {
                     print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                     return
                 }
-                self.userArray = UserData(document: (querySnapshot.self)!)
+                self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
                 
                 if let title = postData.title, !title.isEmpty{
                     self.titleLabel.text = title
@@ -124,7 +158,7 @@ class DetailPostViewController: UIViewController {
                 }
                 
                 if let placeId = postData.place_id {
-                    self.placeLabel.text = self.places[placeId]
+                    self.placeLabel.text = Places().places[placeId]
                 }
                 
                 if let groupName = postData.group_name, let memberName = postData.member_name {
@@ -143,21 +177,16 @@ class DetailPostViewController: UIViewController {
                     self.nameLabel.text = name
                 }
                 
-                if postData.comments.count != 0 {
-                    print("reverse")
-                    postData.comments.reverse()
-                    
-                    for comment in postData.comments {
-                        
-                    }
-                    self.tableView.reloadData()
+                if let purposeId = postData.purpose_id {
+                    self.tagText.text = Purposes().displayPurposes[purposeId]
+                    self.tagImage.tintColor = UIColor(red: CGFloat(Purposes().colorPurposes[purposeId][0])/255, green: CGFloat(Purposes().colorPurposes[purposeId][1])/255, blue: CGFloat(Purposes().colorPurposes[purposeId][2])/255, alpha: 1)
+                    self.tagText.textColor = UIColor(red: CGFloat(Purposes().colorPurposes[purposeId][0])/255, green: CGFloat(Purposes().colorPurposes[purposeId][1])/255, blue: CGFloat(Purposes().colorPurposes[purposeId][2])/255, alpha: 1)
                 }
                 
-                
-                if let purposeId = postData.purpose_id {
-                    self.tagText.text = self.purposes[purposeId]
-                    self.tagImage.tintColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
-                    self.tagText.textColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
+                if let openFlg = postData.open_flg, openFlg == 0 {
+                    self.sendPositionButton.isHidden = true
+                } else {
+                    self.sendPositionButton.isHidden = false
                 }
             }
         }
@@ -168,6 +197,31 @@ class DetailPostViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd HH:mm" // フォーマット指定
         let dateString = formatter.string(from: date) // 変更
         return dateString
+    }
+    
+    /// セル内のボタンがタップされた時に呼ばれるメソッド
+    ///
+    /// - Parameters:
+    ///   - sender: UIButton
+    ///   - event: UIEvent : タップ
+    @objc private func decideButtonTapped(_ sender: UIButton, forEvent event: UIEvent) {
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first // タッチイベント取得
+        let point = touch!.location(in: self.tableView) // タッチの位置取得
+        let indexPath = self.tableView.indexPathForRow(at: point) // 位置に対するインデックス取得
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let commenterData = self.commenterArray[indexPath!.row]
+        
+        let updateValue = [
+            "open_flg": 1,
+            "open_id": commenterData.id
+        ] as [String: Any]
+        
+        let postRef = Firestore.firestore().collection(Const.PostPath).document(self.postId) // 変更カラム取得
+        postRef.setData(updateValue, merge: true)
+        
+        SVProgressHUD.showSuccess(withStatus: "変更しました")
     }
 
 }
@@ -180,8 +234,15 @@ extension DetailPostViewController: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPostCell", for: indexPath) as! DetailPostTableViewCell
+        cell.decideButton.addTarget(self, action:#selector(decideButtonTapped(_:forEvent:)), for: .touchUpInside)
+        if let myid = Auth.auth().currentUser?.uid, myid != self.userArray?.id {
+            cell.decideButton.isHidden = true
+        } else if self.postArray?.open_flg == 1 {
+            cell.decideButton.isHidden = true
+        }
+        
         if let comment = self.postArray?.comments {
-            cell.setComment(data: comment[indexPath.row])
+            cell.setComment(commentData: comment[indexPath.row], userData: self.commenterArray[indexPath.row])
         }
         return cell
     }
@@ -196,4 +257,48 @@ extension DetailPostViewController: UITextViewDelegate {
             self.sendCommentButton.isEnabled = false
         }
     }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension DetailPostViewController: CLLocationManagerDelegate {
+    // 位置情報を取得した場合
+   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       
+       guard let newLocation = locations.first else {
+            return
+       }
+       
+       self.locationManager?.stopUpdatingLocation()
+
+       let location:CLLocationCoordinate2D
+              = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)
+
+       print("緯度：", location.latitude, "経度：", location.longitude, "時間：")
+       
+       var updateValue: [String: Double] = [:]
+       let postRef = Firestore.firestore().collection(Const.PostPath).document(self.postId) // 変更カラム取得
+       guard let myid = Auth.auth().currentUser?.uid else {
+           return
+       }
+       
+       if myid == self.postArray?.poster_id {
+           updateValue = [
+            "poster_latitude": location.latitude,
+            "poster_longitude": location.longitude ]
+       } else {
+           updateValue = [
+            "commenter_latitude": location.latitude,
+            "commenter_longitude": location.longitude ]
+       }
+       postRef.setData(updateValue, merge: true)
+       
+       let value: [[String: Any]] = [
+           [ "user_id": myid,
+             "comment": "位置情報を送信しました。",
+             "date": Timestamp() ]]
+       
+       var commentValue: FieldValue
+       commentValue = FieldValue.arrayUnion(value)
+       postRef.updateData(["comments": commentValue])// 変更依頼送信
+   }
 }

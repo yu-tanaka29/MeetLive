@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,6 @@ class TabBarController: UITabBarController {
         self.tabBar.tintColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
         
         selectedIndex = 2
-
         
         // タブバーの背景色を設定
         let appearance = UITabBarAppearance()
@@ -25,7 +24,7 @@ class TabBarController: UITabBarController {
         self.tabBar.standardAppearance = appearance
         self.tabBar.scrollEdgeAppearance = appearance
         // UITabBarControllerDelegateプロトコルのメソッドをこのクラスで処理する。
-        //self.delegate = self
+        self.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +35,12 @@ class TabBarController: UITabBarController {
             // ログインしていないときの処理
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
             self.present(loginViewController!, animated: true, completion: nil)
+        }
+    }
+    
+    private func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if let navigationController = viewController as? UINavigationController {
+            navigationController.popToRootViewController(animated: true)
         }
     }
 

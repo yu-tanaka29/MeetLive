@@ -21,6 +21,7 @@ class DetailPostData: NSObject {
     var comments: [[String: Any]] = []
     var start_date: Date?
     var end_date: Date?
+    var open_flg: Int?
     var open_id: String?
     var poster_location: Double?
     var commenter_location: Double?
@@ -56,5 +57,7 @@ class DetailPostData: NSObject {
         if let comments = postDic["comments"] as? [[String: Any]] {
             self.comments = comments
         }
+        
+        self.open_flg = postDic["open_flg"] as? Int
     }
 }

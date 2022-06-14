@@ -477,6 +477,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeetLive/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "本アプリは、プロフィール画像設定のため、カメラの使用許可を求めます。";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "本アプリは、プロフィール画像設定のため、フォトライブラリの使用許可を求めます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -507,6 +509,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeetLive/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "本アプリは、プロフィール画像設定のため、カメラの使用許可を求めます。";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を取得します。";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を取得します。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "本アプリは、プロフィール画像設定のため、フォトライブラリの使用許可を求めます。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

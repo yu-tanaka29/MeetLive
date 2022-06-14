@@ -78,7 +78,7 @@ class ChangeProfileViewController: UIViewController {
                     print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                     return
                 }
-                self.userArray = UserData(document: (querySnapshot.self)!)
+                self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
                 
                 self.nameField.text = self.userArray?.name
                 self.genderField.text = self.userArray?.gender

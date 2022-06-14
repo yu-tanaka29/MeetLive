@@ -115,7 +115,7 @@ class PostViewController: UIViewController {
                     print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                     return
                 }
-                self.userArray = UserData(document: (querySnapshot.self)!)
+                self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
             }
         }
     }
@@ -125,15 +125,16 @@ class PostViewController: UIViewController {
         
         // ボタンが押せているということは以下のフィールドテキストには値が入っているため、強制アンラップ
         //
-        var value: [String: Any] =
-        ["title": self.titleField.text!,
-         "purpose_id": Purposes().purposes.firstIndex(of: self.choosePurposeField.text!)!,
-         "place_id": Places().places.firstIndex(of: self.choosePlaceField.text!)!,
-         "group_name": self.groupField.text!,
-         "member_name": self.memberField.text!,
-         "poster_id": (self.userArray?.id)!,
-         "start_date": self.startDateField.date,
-         "end_date": self.endDateField.date]
+        var value: [String: Any] = [
+            "title": self.titleField.text!,
+            "purpose_id": Purposes().purposes.firstIndex(of: self.choosePurposeField.text!)!,
+            "place_id": Places().places.firstIndex(of: self.choosePlaceField.text!)!,
+            "group_name": self.groupField.text!,
+            "member_name": self.memberField.text!,
+            "poster_id": (self.userArray?.id)!,
+            "start_date": self.startDateField.date,
+            "end_date": self.endDateField.date,
+            "open_flg": 0]
 
         if let seat = self.seatField.text, !seat.isEmpty {
             value.updateValue(seat, forKey: "seat")

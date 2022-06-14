@@ -95,7 +95,7 @@ class SearchPostViewController: UIViewController {
                     print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                     return
                 }
-                self.userArray = UserData(document: (querySnapshot.self)!)
+                self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
             }
         }
         
@@ -170,15 +170,15 @@ class SearchPostViewController: UIViewController {
     // MARK: - Private Methods
     /// Firebaseから情報を取得するメソッド
     private func getPostData() {
-        var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("start_date", isGreaterThan: Timestamp()).order(by: "start_date")
+        var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 0).whereField("start_date", isGreaterThan: Timestamp()).order(by: "start_date")
         
         if !self.groupName.isEmpty {
             postsRef = postsRef.whereField("group_name", isEqualTo: self.groupName)
             print(postsRef)
         }
         
-        if let place = self.choosePlaceField.text, !place.isEmpty, place == "その他" {
-            if let prefecture = self.choosePrefectureField.text, !prefecture.isEmpty {
+        if let place = self.choosePlaceField.text, !place.isEmpty {
+            if place == "その他", let prefecture = self.choosePrefectureField.text, !prefecture.isEmpty {
                 postsRef = postsRef.whereField("prefecture", isEqualTo: prefecture)
             } else {
                 postsRef = postsRef.whereField("place_id", isEqualTo: Places().places.firstIndex(of: place)!)
@@ -265,10 +265,9 @@ extension SearchPostViewController: UITableViewDelegate,UITableViewDataSource {
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        // セルの選択を解除
        tableView.deselectRow(at: indexPath, animated: true)
-       let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailPostViewController
-       nextVC.postId = self.postArray[indexPath.row].id!
-       print(self.postArray[indexPath.row].id!)
-       self.navigationController?.pushViewController(nextVC, animated: true)
+       let deatilPostViewController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! DetailPostViewController
+       deatilPostViewController.postId = self.postArray[indexPath.row].id!
+       self.navigationController?.pushViewController(deatilPostViewController, animated: true)
    }
 }
 

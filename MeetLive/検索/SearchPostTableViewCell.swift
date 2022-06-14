@@ -50,7 +50,7 @@ class SearchPostTableViewCell: UITableViewCell {
                     print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
                     return
                 }
-                self.userArray = UserData(document: (querySnapshot.self)!)
+                self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
                 
                 if let title = postData.title, !title.isEmpty{
                     self.titleLabel.text = title
