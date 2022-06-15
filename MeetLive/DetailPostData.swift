@@ -27,6 +27,10 @@ class DetailPostData: NSObject {
     var commenter_location: Double?
     var place: String?
     var purpose: String?
+    var commenter_latitude: Double?
+    var commenter_longitude: Double?
+    var poster_latitude: Double?
+    var poster_longitude: Double?
     
     init(document: DocumentSnapshot) {
         self.id = document.documentID
@@ -59,5 +63,21 @@ class DetailPostData: NSObject {
         }
         
         self.open_flg = postDic["open_flg"] as? Int
+        
+        if let commenter_latitude = postDic["commenter_latitude"] as? Double {
+            self.commenter_latitude = commenter_latitude
+        }
+        
+        if let commenter_longitude = postDic["commenter_longitude"] as? Double {
+            self.commenter_longitude = commenter_longitude
+        }
+        
+        if let poster_latitude = postDic["poster_latitude"] as? Double {
+            self.poster_latitude = poster_latitude
+        }
+        
+        if let poster_longitude = postDic["poster_longitude"] as? Double {
+            self.poster_longitude = poster_longitude
+        }
     }
 }

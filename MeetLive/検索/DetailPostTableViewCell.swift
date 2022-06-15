@@ -31,8 +31,12 @@ class DetailPostTableViewCell: UITableViewCell {
         self.imageLabel.layer.cornerRadius = 20
         self.imageLabel.clipsToBounds = true
         
-        self.addPinButton.isHidden = true
+        self.decideButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        self.decideButton.layer.cornerRadius = 10
         
+        self.addPinButton.isHidden = true
+        self.addPinButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        self.addPinButton.layer.cornerRadius = 10
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,6 +52,8 @@ class DetailPostTableViewCell: UITableViewCell {
         if let myid = Auth.auth().currentUser?.uid, myid != commentData["user_id"] as! String,
            commentData["comment"] as! String == "位置情報を送信しました。" {
             self.addPinButton.isHidden = false
+        } else {
+            self.addPinButton.isHidden = true
         }
             
         if userData.imageFlg == 1 {

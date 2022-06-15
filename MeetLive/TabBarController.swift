@@ -22,7 +22,11 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let appearance = UITabBarAppearance()
         appearance.backgroundColor =  UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
         self.tabBar.standardAppearance = appearance
-        self.tabBar.scrollEdgeAppearance = appearance
+        if #available(iOS 15.0, *) {
+            self.tabBar.scrollEdgeAppearance = appearance
+        } else {
+            // Fallback on earlier versions
+        }
         // UITabBarControllerDelegateプロトコルのメソッドをこのクラスで処理する。
         self.delegate = self
     }

@@ -9,12 +9,19 @@ import UIKit
 import Firebase
 
 class SettingViewController: UIViewController {
+    
+    // MARK: - IBOutlet
+    @IBOutlet weak var changeProfileButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
+    
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // ボタンの角を丸くする
+        self.changeProfileButton.layer.cornerRadius = 10
+        self.logoutButton.layer.cornerRadius = 10
     }
     
 

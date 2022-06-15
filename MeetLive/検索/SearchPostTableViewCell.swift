@@ -43,6 +43,12 @@ class SearchPostTableViewCell: UITableViewCell {
     
     // MARK: - Private Methods
     func setPostData(_ postData: PostData) {
+        if let purposeId = postData.purpose_id {
+            self.tagText.text = self.purposes[purposeId]
+            self.tagImage.tintColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
+            self.tagText.textColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
+        }
+        
         if let posterId = postData.poster_id {
             let userRef = Firestore.firestore().collection(Const.UserPath).document(posterId) //情報を取得する場所を決定
             userRef.getDocument { (querySnapshot, error) in
@@ -82,12 +88,6 @@ class SearchPostTableViewCell: UITableViewCell {
                 
                 if let name = self.userArray?.name {
                     self.nameLabel.text = name
-                }
-                
-                if let purposeId = postData.purpose_id {
-                    self.tagText.text = self.purposes[purposeId]
-                    self.tagImage.tintColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
-                    self.tagText.textColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
                 }
             }
         }

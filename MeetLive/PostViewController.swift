@@ -98,6 +98,8 @@ class PostViewController: UIViewController {
         
         // 投稿ボタンを押せなくする
         self.postButton.isEnabled = false
+        self.postButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
+        self.postButton.layer.cornerRadius = 10
         
         // 枠のカラー
         self.contentField.layer.borderColor = CGColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
@@ -214,11 +216,14 @@ class PostViewController: UIViewController {
             if chooseFlg["place"] == 2,
                let writePlace = self.writePlaceField.text, writePlace.isEmpty{
                 self.postButton.isEnabled = false
+                self.postButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
             } else {
                 self.postButton.isEnabled = true
+                self.postButton.backgroundColor = UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
             }
         } else {
             self.postButton.isEnabled = false
+            self.postButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         }
     }
 }

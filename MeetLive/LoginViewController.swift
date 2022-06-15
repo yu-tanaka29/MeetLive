@@ -26,6 +26,11 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.loginButton.isEnabled = false
+        self.loginButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
+        self.loginButton.layer.cornerRadius = 10
+        
+        self.mailField.delegate = self
+        self.passwordField.delegate = self
     }
     
     // MARK: - IBAction
@@ -73,8 +78,18 @@ class LoginViewController: UIViewController {
            let password = self.passwordField.text, !password.isEmpty {
             
             self.loginButton.isEnabled = true
+            self.loginButton.backgroundColor = UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
         } else {
             self.loginButton.isEnabled = false
+            self.loginButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

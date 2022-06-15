@@ -28,6 +28,8 @@ class RegistUserViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.registButton.isEnabled = false
+        self.registButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
+        self.registButton.layer.cornerRadius = 10
     }
     
     // MARK: - IBAction
@@ -105,8 +107,10 @@ class RegistUserViewController: UIViewController {
            let name = self.nameField.text, !name.isEmpty {
             
             self.registButton.isEnabled = true
+            self.registButton.backgroundColor = UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
         } else {
             self.registButton.isEnabled = false
+            self.registButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         }
     }
     

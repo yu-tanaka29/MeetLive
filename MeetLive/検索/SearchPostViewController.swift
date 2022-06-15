@@ -24,6 +24,8 @@ class SearchPostViewController: UIViewController {
     @IBOutlet weak var withLiveField: UIButton!
     @IBOutlet weak var changeGoodsField: UIButton!
     @IBOutlet weak var otherField: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     // MARK: - メンバ変数
     // 投稿データを格納する配列
@@ -82,6 +84,10 @@ class SearchPostViewController: UIViewController {
         // カスタムセルを登録する
         let nib = UINib(nibName: "SearchPostTableViewCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "SearchPostCell")
+        
+        // ボタンの角を丸くする
+        self.resetButton.layer.cornerRadius = 10
+        self.searchButton.layer.cornerRadius = 10
         
         self.getPostData()
     }
@@ -167,12 +173,37 @@ class SearchPostViewController: UIViewController {
         self.getPostData()
     }
     
+    
+    /// リセットボタンが押された時のメソッド
+    ///
+    /// - Parameter sender: UIButton
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        // 推しグループ・メンバーリセット
+        self.chooseGroupField.text = ""
+        self.groupName = ""
+        // 会場リセット
+        self.choosePlaceField.text = ""
+        self.choosePrefectureField.text = ""
+        // 目的リセット
+        self.checkList.removeAll()
+        self.inPlaceField.setImage(UIImage(systemName: "square"), for: .normal)
+        self.outPlaceField.setImage(UIImage(systemName: "square"), for: .normal)
+        self.withGoodsField.setImage(UIImage(systemName: "square"), for: .normal)
+        self.withLiveField.setImage(UIImage(systemName: "square"), for: .normal)
+        self.changeGoodsField.setImage(UIImage(systemName: "square"), for: .normal)
+        self.otherField.setImage(UIImage(systemName: "square"), for: .normal)
+        
+        self.getPostData()
+    }
+    
+    
     // MARK: - Private Methods
     /// Firebaseから情報を取得するメソッド
     private func getPostData() {
         var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 0).whereField("start_date", isGreaterThan: Timestamp()).order(by: "start_date")
         
         if !self.groupName.isEmpty {
+            print("aaa")
             postsRef = postsRef.whereField("group_name", isEqualTo: self.groupName)
             print(postsRef)
         }

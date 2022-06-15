@@ -56,6 +56,10 @@ class DetailPostViewController: UIViewController {
         
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
+        
+        // ボタンのデザイン
+        self.sendPositionButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        self.sendPositionButton.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -221,7 +225,37 @@ class DetailPostViewController: UIViewController {
         let postRef = Firestore.firestore().collection(Const.PostPath).document(self.postId) // 変更カラム取得
         postRef.setData(updateValue, merge: true)
         
-        SVProgressHUD.showSuccess(withStatus: "変更しました")
+        SVProgressHUD.showSuccess(withStatus: "確定しました")
+    }
+    
+    @objc private func addPinButtonTapped(_ sender: UIButton, forEvent event: UIEvent) {
+        guard let myId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        if myId == self.postArray?.poster_id {
+            guard let latitude = self.postArray?.poster_latitude else {
+                return
+            }
+            
+            guard let longitude = self.postArray?.poster_longitude else {
+                return
+            }
+            
+            self.tabBarController?.selectedIndex = 1
+            
+        } else {
+            guard let latitude = self.postArray?.commenter_latitude else {
+                return
+            }
+            
+            guard let longitude = self.postArray?.commenter_longitude else {
+                return
+            }
+            
+            self.tabBarController?.selectedIndex = 1
+        }
+        
     }
 
 }
@@ -235,6 +269,7 @@ extension DetailPostViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPostCell", for: indexPath) as! DetailPostTableViewCell
         cell.decideButton.addTarget(self, action:#selector(decideButtonTapped(_:forEvent:)), for: .touchUpInside)
+        cell.addPinButton.addTarget(self, action:#selector(addPinButtonTapped(_:forEvent:)), for: .touchUpInside)
         if let myid = Auth.auth().currentUser?.uid, myid != self.userArray?.id {
             cell.decideButton.isHidden = true
         } else if self.postArray?.open_flg == 1 {

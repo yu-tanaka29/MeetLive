@@ -63,6 +63,10 @@ class ChangeProfileViewController: UIViewController {
         // インプットビュー設定
         self.genderField.inputView = self.pickerView
         self.genderField.inputAccessoryView = toolbar
+        
+        // ボタンの角を丸くする
+        self.PersonalChangeButton.layer.cornerRadius = 10
+        self.addGroupButton.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
