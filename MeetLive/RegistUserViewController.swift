@@ -30,6 +30,10 @@ class RegistUserViewController: UIViewController {
         self.registButton.isEnabled = false
         self.registButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         self.registButton.layer.cornerRadius = 10
+        
+        self.mailField.delegate = self
+        self.passwordField.delegate = self
+        self.nameField.delegate = self
     }
     
     // MARK: - IBAction
@@ -113,5 +117,13 @@ class RegistUserViewController: UIViewController {
             self.registButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         }
     }
-    
 }
+
+// MARK: - UITextFieldDelegate
+extension RegistUserViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

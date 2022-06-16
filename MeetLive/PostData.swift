@@ -25,6 +25,7 @@ class PostData: NSObject {
     var poster_location: Double?
     var commenter_location: Double?
     var place: String?
+    var prefecture: String?
     var purpose: String?
     
     init(document: QueryDocumentSnapshot) {
@@ -53,6 +54,12 @@ class PostData: NSObject {
         
         if let comments = postDic["comments"] as? [[String: Any]] {
             self.comments = comments
+        }
+        
+        if let prefecture = postDic["prefecture"] as? String,
+           let place = postDic["place"] as? String {
+            self.prefecture = prefecture
+            self.place = place
         }
     }
 }

@@ -67,11 +67,17 @@ class SearchPostTableViewCell: UITableViewCell {
                 if let start_date = postData.start_date, let end_date = postData.end_date{
                     let startDate: String = self.dateFormat(date: start_date)
                     let endDate: String = self.dateFormat(date: end_date)
-                    self.dateLabel.text = "日時: \(startDate) - \(endDate)"
+                    self.dateLabel.text = "\(startDate) - \(endDate)"
                 }
                 
                 if let placeId = postData.place_id {
-                    self.placeLabel.text = self.places[placeId]
+                    if placeId == 29 {
+                        let prefecture = postData.prefecture!
+                        let place = postData.place!
+                        self.placeLabel.text = "その他(\(prefecture) \(place))"
+                    } else {
+                        self.placeLabel.text = self.places[placeId]
+                    }
                 }
                 
                 if let groupName = postData.group_name, let memberName = postData.member_name {

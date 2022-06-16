@@ -39,11 +39,14 @@ class ChangeProfileViewController: UIViewController {
         super.viewDidLoad()
 
         self.imageChangeButton.layer.cornerRadius = 28
-        // Do any additional setup after loading the view.
-        self.addGroupButton.isEnabled = false
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.nameField.delegate = self
+        self.ageField.delegate = self
+        self.groupField.delegate = self
+        self.memberField.delegate = self
         
         // カスタムセルを登録する
         let nib = UINib(nibName: "FavoriteGroupTableViewCell", bundle: nil)
@@ -66,6 +69,8 @@ class ChangeProfileViewController: UIViewController {
         
         // ボタンの角を丸くする
         self.PersonalChangeButton.layer.cornerRadius = 10
+        self.addGroupButton.isEnabled = false
+        self.addGroupButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         self.addGroupButton.layer.cornerRadius = 10
     }
     
@@ -212,8 +217,10 @@ class ChangeProfileViewController: UIViewController {
             // アドレスとパスワード6文字以上入力されていない場合はボタンを押せなくする
             if !group.isEmpty && !member.isEmpty {
                 self.addGroupButton.isEnabled = true
+                self.addGroupButton.backgroundColor = UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
             } else {
                 self.addGroupButton.isEnabled = false
+                self.addGroupButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
             }
         }
     }
@@ -329,3 +336,12 @@ extension ChangeProfileViewController: UIImagePickerControllerDelegate, UINaviga
         picker.dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - UITextFieldDelegate
+extension ChangeProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+

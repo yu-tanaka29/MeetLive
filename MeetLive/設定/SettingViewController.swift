@@ -12,6 +12,7 @@ class SettingViewController: UIViewController {
     
     // MARK: - IBOutlet
     @IBOutlet weak var changeProfileButton: UIButton!
+    @IBOutlet weak var myPostListButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
 
@@ -21,6 +22,7 @@ class SettingViewController: UIViewController {
 
         // ボタンの角を丸くする
         self.changeProfileButton.layer.cornerRadius = 10
+        self.myPostListButton.layer.cornerRadius = 10
         self.logoutButton.layer.cornerRadius = 10
     }
     

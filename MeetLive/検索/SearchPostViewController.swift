@@ -14,6 +14,7 @@ class SearchPostViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var hideButton: UIButton!
     @IBOutlet weak var searchField: UIView!
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chooseGroupField: UITextField!
     @IBOutlet weak var choosePlaceField: UITextField!
@@ -203,9 +204,7 @@ class SearchPostViewController: UIViewController {
         var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 0).whereField("start_date", isGreaterThan: Timestamp()).order(by: "start_date")
         
         if !self.groupName.isEmpty {
-            print("aaa")
             postsRef = postsRef.whereField("group_name", isEqualTo: self.groupName)
-            print(postsRef)
         }
         
         if let place = self.choosePlaceField.text, !place.isEmpty {
@@ -225,6 +224,8 @@ class SearchPostViewController: UIViewController {
                 return
             }
             
+            let stringNum = (querySnapshot?.count)!.description
+            self.countLabel.text =  "\(String(describing: stringNum)) 件"
             // 取得したdocumentをもとにPostDataを作成し、postArrayの配列にする。
             self.postArray = querySnapshot!.documents.map { document in
                 print("DEBUG_PRINT: document取得 \(document.documentID)")

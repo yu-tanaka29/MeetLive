@@ -60,6 +60,8 @@ class DetailPostViewController: UIViewController {
         // ボタンのデザイン
         self.sendPositionButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         self.sendPositionButton.layer.cornerRadius = 10
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -217,6 +219,7 @@ class DetailPostViewController: UIViewController {
         // 配列からタップされたインデックスのデータを取り出す
         let commenterData = self.commenterArray[indexPath!.row]
         
+        
         let updateValue = [
             "open_flg": 1,
             "open_id": commenterData.id
@@ -233,29 +236,52 @@ class DetailPostViewController: UIViewController {
             return
         }
         
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first // タッチイベント取得
+        let point = touch!.location(in: self.tableView) // タッチの位置取得
+        let indexPath = self.tableView.indexPathForRow(at: point) // 位置に対するインデックス取得
+        
+        // 配列からタップされたインデックスのデータを取り出す
+        let commenterData = self.commenterArray[indexPath!.row]
+        
+        guard let name = commenterData.name else {
+            return
+        }
+        
         if myId == self.postArray?.poster_id {
             guard let latitude = self.postArray?.poster_latitude else {
                 return
             }
-            
             guard let longitude = self.postArray?.poster_longitude else {
                 return
             }
             
-            self.tabBarController?.selectedIndex = 1
+            self.transitionMapViewController(latitude: latitude, longitude: longitude, name: name)
             
         } else {
             guard let latitude = self.postArray?.commenter_latitude else {
                 return
             }
-            
             guard let longitude = self.postArray?.commenter_longitude else {
                 return
             }
             
-            self.tabBarController?.selectedIndex = 1
+            self.transitionMapViewController(latitude: latitude, longitude: longitude, name: name)
+            
         }
         
+    }
+    
+    private func transitionMapViewController(latitude: Double, longitude: Double, name: String) {
+        let navController = self.tabBarController?.viewControllers![1] as! UINavigationController
+        let mapViewController = navController.topViewController as! MapViewController
+        mapViewController.pinFlg = 1
+        mapViewController.longitude = longitude
+        mapViewController.latitude = latitude
+        mapViewController.userName = name
+        mapViewController.titleLabel = (self.postArray?.title)!
+        
+        self.tabBarController?.selectedIndex = 1
     }
 
 }
@@ -308,7 +334,7 @@ extension DetailPostViewController: CLLocationManagerDelegate {
        let location:CLLocationCoordinate2D
               = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude)
 
-       print("緯度：", location.latitude, "経度：", location.longitude, "時間：")
+       print("緯度：", location.latitude, "経度：", location.longitude)
        
        var updateValue: [String: Double] = [:]
        let postRef = Firestore.firestore().collection(Const.PostPath).document(self.postId) // 変更カラム取得

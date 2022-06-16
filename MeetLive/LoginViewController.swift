@@ -33,8 +33,7 @@ class LoginViewController: UIViewController {
         self.passwordField.delegate = self
     }
     
-    // MARK: - IBAction
-    
+    // MARK: - IBAction    
     /// ログインボタンが押されたときに呼ばれるメソッド
     ///
     /// - Parameter sender: UIButton
@@ -63,7 +62,7 @@ class LoginViewController: UIViewController {
             SVProgressHUD.dismiss()
 
             // 画面を閉じてタブ画面に戻る
-            self.dismiss(animated: true, completion: nil)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             
         }
     }

@@ -11,6 +11,7 @@ import SVProgressHUD
 
 class PostViewController: UIViewController {
     // MARK: - IBOutlet
+    @IBOutlet weak var contentView: UIView!
     // タイトル
     @IBOutlet weak var titleField: UITextField!
     // 開始日時
@@ -106,6 +107,15 @@ class PostViewController: UIViewController {
         // 枠の幅
         self.contentField.layer.borderWidth = 1.0
         self.contentField.layer.cornerRadius = 10
+        
+        // デリゲート
+        self.titleField.delegate = self
+        self.writePurposeField.delegate = self
+        self.writePlaceField.delegate = self
+        self.seatField.delegate = self
+        self.contentField.delegate = self
+        
+        self.contentView.addGestureRecognizer(UITapGestureRecognizer(target: self.contentView, action: #selector(UIView.endEditing(_:))))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -287,3 +297,19 @@ extension PostViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
+
+// MARK: - UITextFieldDelegate
+extension PostViewController: UITextFieldDelegate, UITextViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("aa")
+        if (self.contentField.isFirstResponder) {
+            self.contentField.resignFirstResponder()
+        }
+    }
+}
+
