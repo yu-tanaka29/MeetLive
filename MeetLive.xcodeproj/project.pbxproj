@@ -10,6 +10,8 @@
 		0B173FE30DC523CD51C28F81 /* Pods_MeetLive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */; };
 		2516F874285ACE8300C15393 /* MyPostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516F873285ACE8300C15393 /* MyPostListViewController.swift */; };
 		2516F876285AF52A00C15393 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516F875285AF52A00C15393 /* NewsModel.swift */; };
+		2530379F285C3F8A00535ABB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2530379D285C3F8A00535ABB /* NewsTableViewCell.swift */; };
+		253037A0285C3F8A00535ABB /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2530379E285C3F8A00535ABB /* NewsTableViewCell.xib */; };
 		256250442848868800FC1597 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250432848868800FC1597 /* AppDelegate.swift */; };
 		256250462848868800FC1597 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256250452848868800FC1597 /* SceneDelegate.swift */; };
 		2562504B2848868800FC1597 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256250492848868800FC1597 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		0A02385DDFFCC69604DBD369 /* Pods_MeetLive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeetLive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2516F873285ACE8300C15393 /* MyPostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostListViewController.swift; sourceTree = "<group>"; };
 		2516F875285AF52A00C15393 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		2530379D285C3F8A00535ABB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		2530379E285C3F8A00535ABB /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		256250402848868800FC1597 /* MeetLive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetLive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		256250432848868800FC1597 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		256250452848868800FC1597 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,26 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2530379B285C3F2A00535ABB /* ログイン関連 */ = {
+			isa = PBXGroup;
+			children = (
+				2562505B28489DA800FC1597 /* RegistUserViewController.swift */,
+				2562505928489D9400FC1597 /* LoginViewController.swift */,
+			);
+			name = "ログイン関連";
+			path = "ログイン関連";
+			sourceTree = "<group>";
+		};
+		2530379C285C3F5B00535ABB /* 最新記事 */ = {
+			isa = PBXGroup;
+			children = (
+				256250692849939500FC1597 /* NewsViewController.swift */,
+				2530379D285C3F8A00535ABB /* NewsTableViewCell.swift */,
+				2530379E285C3F8A00535ABB /* NewsTableViewCell.xib */,
+			);
+			path = "最新記事";
+			sourceTree = "<group>";
+		};
 		256250372848868800FC1597 = {
 			isa = PBXGroup;
 			children = (
@@ -128,12 +152,11 @@
 			children = (
 				256250432848868800FC1597 /* AppDelegate.swift */,
 				256250452848868800FC1597 /* SceneDelegate.swift */,
-				2562505B28489DA800FC1597 /* RegistUserViewController.swift */,
-				2562505928489D9400FC1597 /* LoginViewController.swift */,
-				256250692849939500FC1597 /* NewsViewController.swift */,
 				2562506528489E0600FC1597 /* MapViewController.swift */,
 				2562506128489DEE00FC1597 /* SuccessPostViewController.swift */,
 				25625078284ECFFA00FC1597 /* PostViewController.swift */,
+				2530379C285C3F5B00535ABB /* 最新記事 */,
+				2530379B285C3F2A00535ABB /* ログイン関連 */,
 				25D280492850364E002E056D /* 検索 */,
 				256250752849EA1700FC1597 /* 設定 */,
 				256250492848868800FC1597 /* Main.storyboard */,
@@ -254,6 +277,7 @@
 				256250582848895400FC1597 /* GoogleService-Info.plist in Resources */,
 				2562504D2848868B00FC1597 /* Assets.xcassets in Resources */,
 				2562504B2848868800FC1597 /* Main.storyboard in Resources */,
+				253037A0285C3F8A00535ABB /* NewsTableViewCell.xib in Resources */,
 				25D2804D28503679002E056D /* SearchPostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +339,7 @@
 				256250732849EA0100FC1597 /* FavoriteGroupTableViewCell.swift in Sources */,
 				25D2804F28505E39002E056D /* PostData.swift in Sources */,
 				25D280542852D951002E056D /* DetailPostTableViewCell.swift in Sources */,
+				2530379F285C3F8A00535ABB /* NewsTableViewCell.swift in Sources */,
 				2562506028489DC700FC1597 /* DetailPostViewController.swift in Sources */,
 				2516F874285ACE8300C15393 /* MyPostListViewController.swift in Sources */,
 				25D2804C28503679002E056D /* SearchPostTableViewCell.swift in Sources */,

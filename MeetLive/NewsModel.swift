@@ -8,10 +8,12 @@
 import Foundation
 
 struct NewsModel: Codable {
-    let item: Item
+    var items: [Item]
     
     struct Item: Codable {
         let title: String
         let link: String
+        let content: String
+        var pubDate: String
     }
 }

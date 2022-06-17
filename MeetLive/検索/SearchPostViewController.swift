@@ -113,12 +113,12 @@ class SearchPostViewController: UIViewController {
     @IBAction func hideButtonTapped(_ sender: UIButton) {
         if self.hideButton.currentTitle == "閉じる" {
             self.hideButton.setTitle("開く", for: .normal)
-            self.hideButton.setImage(UIImage(systemName: "arrow.down"), for: .normal)
+            self.hideButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
             
             self.searchField.isHidden = true
         } else {
             self.hideButton.setTitle("閉じる", for: .normal)
-            self.hideButton.setImage(UIImage(systemName: "arrow.up"), for: .normal)
+            self.hideButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
             
             self.searchField.isHidden = false
         }
@@ -185,6 +185,7 @@ class SearchPostViewController: UIViewController {
         // 会場リセット
         self.choosePlaceField.text = ""
         self.choosePrefectureField.text = ""
+        self.choosePrefectureField.isHidden = true
         // 目的リセット
         self.checkList.removeAll()
         self.inPlaceField.setImage(UIImage(systemName: "square"), for: .normal)

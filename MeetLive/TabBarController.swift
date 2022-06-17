@@ -20,13 +20,17 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         // タブバーの背景色を設定
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor =  UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
+        appearance.configureWithOpaqueBackground()
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 10, weight: .medium)]
+        appearance.stackedLayoutAppearance.normal.iconColor = .white
+        appearance.backgroundColor = UIColor(red: 253/255, green: 198/255, blue: 148/255, alpha: 1)
+        self.tabBar.tintColor = UIColor(red: 255/255, green: 130/255, blue: 0/255, alpha: 1)
+        
         self.tabBar.standardAppearance = appearance
         if #available(iOS 15.0, *) {
-            self.tabBar.scrollEdgeAppearance = appearance
-        } else {
-            // Fallback on earlier versions
+           self.tabBar.scrollEdgeAppearance = appearance
         }
+
         // UITabBarControllerDelegateプロトコルのメソッドをこのクラスで処理する。
         self.delegate = self
     }
