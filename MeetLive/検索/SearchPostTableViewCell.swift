@@ -18,6 +18,9 @@ class SearchPostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel! // タイトル
     @IBOutlet weak var dateLabel: UILabel! // 日時
     @IBOutlet weak var placeLabel: UILabel! // 会場
+    
+    @IBOutlet weak var seatField: UIStackView! // 座席表示フィールド
+    @IBOutlet weak var seatLabel: UILabel! // 座席
     @IBOutlet weak var groupLabel: UILabel! // 好きなグループ・メンバー
     @IBOutlet weak var contentLabel: UILabel! // 内容
     @IBOutlet weak var personalLabel: UILabel!
@@ -47,6 +50,13 @@ class SearchPostTableViewCell: UITableViewCell {
             self.tagText.text = self.purposes[purposeId]
             self.tagImage.tintColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
             self.tagText.textColor = UIColor(red: CGFloat(self.colorPurposes[purposeId][0])/255, green: CGFloat(self.colorPurposes[purposeId][1])/255, blue: CGFloat(self.colorPurposes[purposeId][2])/255, alpha: 1)
+        }
+        
+        if let seat = postData.seat {
+            self.seatField.isHidden = false
+            self.seatLabel.text = seat
+        } else {
+            self.seatField.isHidden = true
         }
         
         if let posterId = postData.poster_id {

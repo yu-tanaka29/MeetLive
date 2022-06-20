@@ -42,6 +42,7 @@ class ChangeProfileViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
         
         self.nameField.delegate = self
         self.ageField.delegate = self
@@ -105,6 +106,7 @@ class ChangeProfileViewController: UIViewController {
                     self.Profileimage.backgroundColor = .white
                 }
                 // TableViewの表示を更新する
+                self.tableView.separatorStyle = .singleLine
                 self.tableView.reloadData()
             }
         }

@@ -26,7 +26,6 @@ class PostData: NSObject {
     var commenter_location: Double?
     var place: String?
     var prefecture: String?
-    var purpose: String?
     
     init(document: QueryDocumentSnapshot) {
         self.id = document.documentID
@@ -40,6 +39,10 @@ class PostData: NSObject {
         self.purpose_id = postDic["purpose_id"] as? Int
         
         self.content = postDic["content"] as? String
+        
+        if let seat = postDic["seat"] as? String {
+            self.seat = seat
+        }
         
         var timestamp = postDic["start_date"] as? Timestamp // 日付
         self.start_date = timestamp?.dateValue() // Date型に変更

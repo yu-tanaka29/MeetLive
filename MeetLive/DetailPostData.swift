@@ -58,6 +58,10 @@ class DetailPostData: NSObject {
         
         self.poster_id = postDic["poster_id"] as? String
         
+        if let seat = postDic["seat"] as? String {
+            self.seat = seat
+        }
+        
         if let comments = postDic["comments"] as? [[String: Any]] {
             self.comments = comments
         }

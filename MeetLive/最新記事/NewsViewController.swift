@@ -29,6 +29,7 @@ class NewsViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +50,8 @@ class NewsViewController: UIViewController {
             guard let groups = self.userArray?.groups else {
                 return
             }
-            for i in 1 ... groups.count {
-                if i == groups.count {
-                    self.group = self.group + groups[i - 1]["group_name"]!.replacingOccurrences(of: " ", with: "%2B")
-                } else {
-                    self.group = self.group + groups[i - 1]["group_name"]!.replacingOccurrences(of: " ", with: "%2B") + "%2C"
-                }
+            for group in groups {
+                self.group = self.group + group["group_name"]!.replacingOccurrences(of: " ", with: "%2B") + "%2C"
                 print(self.group)
             }
             self.request(group: self.group)
@@ -64,7 +61,7 @@ class NewsViewController: UIViewController {
     
     // MARK: - Private Methods
     func request(group: String) {
-        let url = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fhl%3Dja%26ie%3DUTF-8%26oe%3DUTF-8%26q%3D\(group)%26ceid%3DJP%3Aja%26after%3A2022-6-1%26gl%3DJP"
+        let url = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fhl%3Dja%26ie%3DUTF-8%26oe%3DUTF-8%26q%3D\(group)after%3A2022%2F05%2F01%26ceid%3DJP%3Aja%26gl%3DJP"
         AF.request(url).responseData { response in
             switch response.result {
             case .success:
@@ -72,6 +69,7 @@ class NewsViewController: UIViewController {
                     self.articles = try self.decoder.decode(NewsModel.self, from: response.data!)
                     self.articles?.items.sort(by: {$0.pubDate > $1.pubDate})
                     self.tableView.reloadData()
+                    self.tableView.separatorStyle = .singleLine
                 } catch {
                     print("デコードに失敗しました")
                 }

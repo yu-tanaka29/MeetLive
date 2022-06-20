@@ -12,6 +12,7 @@ import SVProgressHUD
 class PostViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentHeight: NSLayoutConstraint!
     // タイトル
     @IBOutlet weak var titleField: UITextField!
     // 開始日時
@@ -20,7 +21,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var endDateField: UIDatePicker!
     // 目的関連
     @IBOutlet weak var choosePurposeField: UITextField!
-    @IBOutlet weak var writePurposeField: UITextField!
     // 会場関連
     @IBOutlet weak var choosePlaceField: UITextField!
     @IBOutlet weak var choosePrefectureField: UITextField!
@@ -51,13 +51,13 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.contentHeight.constant = 930
+        
         // 目的選択用UIPickerView関連
         self.purposePickerView.delegate = self
         self.purposePickerView.dataSource = self
         self.purposePickerView.tag = 1
         self.choosePurposeField.inputView = self.purposePickerView
-        
-        self.writePurposeField.isHidden = true
         
         // 会場選択用UIPickerView関連
         self.placePickerView.delegate = self
@@ -110,7 +110,6 @@ class PostViewController: UIViewController {
         
         // デリゲート
         self.titleField.delegate = self
-        self.writePurposeField.delegate = self
         self.writePlaceField.delegate = self
         self.seatField.delegate = self
         self.contentField.delegate = self
@@ -130,6 +129,10 @@ class PostViewController: UIViewController {
                 self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
             }
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - IBAction
@@ -154,9 +157,6 @@ class PostViewController: UIViewController {
         if let content = self.contentField.text, !content.isEmpty {
             value.updateValue(content, forKey: "content")
         }
-        if let writePuepose = self.writePurposeField.text, !writePuepose.isEmpty {
-            value.updateValue(writePuepose, forKey: "purpose")
-        }
         if let prefecture = self.choosePrefectureField.text, !prefecture.isEmpty {
             value.updateValue(prefecture, forKey: "prefecture")
         }
@@ -168,6 +168,7 @@ class PostViewController: UIViewController {
         postRef.setData(value)
         
         SVProgressHUD.showSuccess(withStatus: "投稿しました")
+        self.navigationController?.popViewController(animated: true)
         
     }
     
@@ -186,10 +187,12 @@ class PostViewController: UIViewController {
                     self.choosePrefectureField.isHidden = false
                     self.writePlaceField.isHidden = false
                     self.chooseFlg["place"] = 2
+                    self.contentHeight.constant = 1015
                 } else {
                     self.choosePrefectureField.isHidden = true
                     self.writePlaceField.isHidden = true
                     self.chooseFlg["place"] = 1
+                    self.contentHeight.constant = 930
                 }
                 self.checkTextField()
             case 3:

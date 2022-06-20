@@ -79,6 +79,7 @@ class SearchPostViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
         
         self.addButton.layer.cornerRadius = 34
         
@@ -235,6 +236,7 @@ class SearchPostViewController: UIViewController {
             }
             
             // TableViewの表示を更新する
+            self.tableView.separatorStyle = .singleLine
             self.tableView.reloadData()
         }
     }

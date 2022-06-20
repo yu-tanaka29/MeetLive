@@ -21,6 +21,8 @@ class DetailPostViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var seatField: UIStackView!
+    @IBOutlet weak var seatLabel: UILabel!
     @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var commentField: UITextView!
@@ -64,6 +66,7 @@ class DetailPostViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
     }
     
+    // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         print("DEBUG_PRINT: viewWillAppear")
         let postsRef = Firestore.firestore().collection(Const.PostPath).document(postId)
@@ -189,6 +192,13 @@ class DetailPostViewController: UIViewController {
                     self.tagText.textColor = UIColor(red: CGFloat(Purposes().colorPurposes[purposeId][0])/255, green: CGFloat(Purposes().colorPurposes[purposeId][1])/255, blue: CGFloat(Purposes().colorPurposes[purposeId][2])/255, alpha: 1)
                 }
                 
+                if let seat = postData.seat {
+                    self.seatField.isHidden = false
+                    self.seatLabel.text = seat
+                } else {
+                    self.seatField.isHidden = true
+                }
+                
                 if let openFlg = postData.open_flg, openFlg == 0 {
                     self.sendPositionButton.isHidden = true
                 } else {
@@ -273,8 +283,7 @@ class DetailPostViewController: UIViewController {
     }
     
     private func transitionMapViewController(latitude: Double, longitude: Double, name: String) {
-        let navController = self.tabBarController?.viewControllers![1] as! UINavigationController
-        let mapViewController = navController.topViewController as! MapViewController
+        let mapViewController = tabBarController?.viewControllers?[1] as! MapViewController
         mapViewController.pinFlg = 1
         mapViewController.longitude = longitude
         mapViewController.latitude = latitude

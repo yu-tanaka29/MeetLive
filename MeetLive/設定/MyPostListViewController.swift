@@ -27,6 +27,7 @@ class MyPostListViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +56,7 @@ class MyPostListViewController: UIViewController {
                 self.postArray.append(postData)
             }
 
+            self.tableView.separatorStyle = .singleLine
             self.tableView.reloadData()
         }
     }

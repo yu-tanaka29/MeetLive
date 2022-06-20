@@ -26,13 +26,13 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WKK-nR-G3K">
-                        <rect key="frame" x="110" y="105" width="100" height="50"/>
+                        <rect key="frame" x="110" y="95" width="100" height="60"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTu-fB-laC">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="25"/>
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.77647058820000003" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="8Oh-vs-VkL"/>
+                                    <constraint firstAttribute="height" constant="30" id="8Oh-vs-VkL"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="RSe-zO-fNg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -42,10 +42,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hG1-Ck-x0d">
-                                <rect key="frame" x="0.0" y="25" width="100" height="25"/>
+                                <rect key="frame" x="0.0" y="30" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.99215686270000003" green="0.77647058820000003" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="Iw7-ek-RGw"/>
+                                    <constraint firstAttribute="height" constant="30" id="Iw7-ek-RGw"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="d5s-Bg-Dif"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -81,7 +81,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oo-X8-XOJ">
-                        <rect key="frame" x="10" y="85" width="300" height="15"/>
+                        <rect key="frame" x="10" y="75" width="300" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="dlV-xR-TAS"/>
                         </constraints>
@@ -90,7 +90,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GC-4a-Axw" customClass="CustomLabel" customModule="MeetLive" customModuleProvider="target">
-                        <rect key="frame" x="60" y="35" width="250" height="40"/>
+                        <rect key="frame" x="60" y="35" width="250" height="30"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="40" id="G0x-Rn-OUw"/>
