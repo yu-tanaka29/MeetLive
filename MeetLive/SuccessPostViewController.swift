@@ -14,11 +14,13 @@ class SuccessPostViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     // 今後会う予定の投稿のみ表示ボタン
     @IBOutlet weak var limitButton: UIButton!
+    @IBOutlet weak var sortButton: UIButton!
     
     // MARK: - メンバ変数
     // 投稿データを格納する配列
     var postArray: [PostData] = []
     var checkFlg = 0
+    var sortFlg = 0
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -36,11 +38,11 @@ class SuccessPostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("aaa")
-        self.getPostData(flg: self.checkFlg)
+        self.getPostData()
     }
     
     // MARK: - IBAction
-    @IBAction func limitButtonTapped(_ sender: Any) {
+    @IBAction func limitButtonTapped(_ sender: UIButton) {
         if self.checkFlg == 0 {
             self.checkFlg = 1
             self.limitButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
@@ -50,21 +52,33 @@ class SuccessPostViewController: UIViewController {
         }
         
         print(self.checkFlg)
-        self.getPostData(flg: self.checkFlg)
+        self.getPostData()
+    }
+    
+    @IBAction func sortButtonTapped(_ sender: UIButton) {
+        if self.sortButton.currentTitle == "降順にする" {
+            self.sortButton.setTitle("昇順にする", for: .normal)
+            self.sortFlg = 1
+        } else {
+            self.sortButton.setTitle("降順にする", for: .normal)
+            self.sortFlg = 0
+        }
+        self.getPostData()
     }
     
     
+    
     // MARK: - Private Methods
-    private func getPostData(flg: Int) {
+    private func getPostData() {
         guard let myId = Auth.auth().currentUser?.uid else {
             return
         }
         
         self.postArray.removeAll()
         
-        var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 1).whereField("poster_id", isEqualTo: myId).order(by: "start_date")
+        var postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 1).whereField("poster_id", isEqualTo: myId)
         
-        if flg == 1 {
+        if self.checkFlg == 1 {
             postsRef = postsRef.whereField("start_date", isGreaterThan: Timestamp())
         }
         
@@ -81,9 +95,9 @@ class SuccessPostViewController: UIViewController {
             }
             
             
-            postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 1).whereField("open_id", isEqualTo: myId).order(by: "start_date")
+            postsRef = Firestore.firestore().collection(Const.PostPath).whereField("open_flg", isEqualTo: 1).whereField("open_id", isEqualTo: myId)
             
-            if flg == 1 {
+            if self.checkFlg == 1 {
                 postsRef = postsRef.whereField("start_date", isGreaterThan: Timestamp())
             }
 
@@ -99,7 +113,11 @@ class SuccessPostViewController: UIViewController {
                     self.postArray.append(postData)
                 }
 
-                self.postArray.sort(by: {$0.start_date! < $1.start_date!})
+                if self.sortFlg == 1 {
+                    self.postArray.sort(by: {$0.start_date! > $1.start_date!})
+                } else {
+                    self.postArray.sort(by: {$0.start_date! < $1.start_date!})
+                }
                 self.tableView.separatorStyle = .singleLine
                 self.tableView.reloadData()
             }
