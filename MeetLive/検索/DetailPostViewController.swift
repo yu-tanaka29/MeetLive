@@ -82,6 +82,9 @@ class DetailPostViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.popViewController(animated: true)
+        print("DEBUG_PRINT: viewWillDisappear")
+        // listenerを削除して監視を停止する
+        self.listener?.remove()
     }
     
     // MARK: - IBAction
@@ -259,25 +262,21 @@ class DetailPostViewController: UIViewController {
         }
         
         if myId == self.postArray?.poster_id {
-            guard let latitude = self.postArray?.poster_latitude else {
-                return
-            }
-            guard let longitude = self.postArray?.poster_longitude else {
-                return
-            }
-            
-            self.transitionMapViewController(latitude: latitude, longitude: longitude, name: name)
-            
-        } else {
             guard let latitude = self.postArray?.commenter_latitude else {
                 return
             }
             guard let longitude = self.postArray?.commenter_longitude else {
                 return
             }
-            
             self.transitionMapViewController(latitude: latitude, longitude: longitude, name: name)
-            
+        } else {
+            guard let latitude = self.postArray?.poster_latitude else {
+                return
+            }
+            guard let longitude = self.postArray?.poster_longitude else {
+                return
+            }
+            self.transitionMapViewController(latitude: latitude, longitude: longitude, name: name)
         }
         
     }
@@ -370,5 +369,6 @@ extension DetailPostViewController: CLLocationManagerDelegate {
        var commentValue: FieldValue
        commentValue = FieldValue.arrayUnion(value)
        postRef.updateData(["comments": commentValue])// 変更依頼送信
+       
    }
 }

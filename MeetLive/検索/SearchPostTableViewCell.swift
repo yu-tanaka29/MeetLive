@@ -59,6 +59,36 @@ class SearchPostTableViewCell: UITableViewCell {
             self.seatField.isHidden = true
         }
         
+        if let title = postData.title, !title.isEmpty{
+            self.titleLabel.text = title
+        }
+        
+        // 日時の表示
+        self.dateLabel.text = ""
+        if let start_date = postData.start_date, let end_date = postData.end_date{
+            let startDate: String = self.dateFormat(date: start_date)
+            let endDate: String = self.dateFormat(date: end_date)
+            self.dateLabel.text = "\(startDate) - \(endDate)"
+        }
+        
+        if let placeId = postData.place_id {
+            if placeId == 29 {
+                let prefecture = postData.prefecture!
+                let place = postData.place!
+                self.placeLabel.text = "その他(\(prefecture) \(place))"
+            } else {
+                self.placeLabel.text = self.places[placeId]
+            }
+        }
+        
+        if let groupName = postData.group_name, let memberName = postData.member_name {
+            self.groupLabel.text = "\(memberName)(\(groupName))"
+        }
+        
+        if let content = postData.content {
+            self.contentLabel.text = content
+        }
+        
         if let posterId = postData.poster_id {
             let userRef = Firestore.firestore().collection(Const.UserPath).document(posterId) //情報を取得する場所を決定
             userRef.getDocument { (querySnapshot, error) in
@@ -67,36 +97,6 @@ class SearchPostTableViewCell: UITableViewCell {
                     return
                 }
                 self.userArray = UserData(document: (querySnapshot.self)!, num: 0)
-                
-                if let title = postData.title, !title.isEmpty{
-                    self.titleLabel.text = title
-                }
-                
-                // 日時の表示
-                self.dateLabel.text = ""
-                if let start_date = postData.start_date, let end_date = postData.end_date{
-                    let startDate: String = self.dateFormat(date: start_date)
-                    let endDate: String = self.dateFormat(date: end_date)
-                    self.dateLabel.text = "\(startDate) - \(endDate)"
-                }
-                
-                if let placeId = postData.place_id {
-                    if placeId == 29 {
-                        let prefecture = postData.prefecture!
-                        let place = postData.place!
-                        self.placeLabel.text = "その他(\(prefecture) \(place))"
-                    } else {
-                        self.placeLabel.text = self.places[placeId]
-                    }
-                }
-                
-                if let groupName = postData.group_name, let memberName = postData.member_name {
-                    self.groupLabel.text = "\(memberName)(\(groupName))"
-                }
-                
-                if let content = postData.content {
-                    self.contentLabel.text = content
-                }
                 
                 if let gender = self.userArray?.gender, let age = self.userArray?.age {
                     self.personalLabel.text = "\(age)歳・\(gender)"

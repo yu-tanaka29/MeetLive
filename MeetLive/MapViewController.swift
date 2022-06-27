@@ -37,13 +37,14 @@ class MapViewController: UIViewController {
 //        // マップビューに緯度・軽度を設定
 //        self.mapView.setCenter(location, animated:true)
 //        
-//        // 縮尺を設定
-//        var region = mapView.region
-//        region.center = location
-//        region.span.latitudeDelta = 0.02
-//        region.span.longitudeDelta = 0.02
-//        // マップビューに縮尺を設定
-//        self.mapView.setRegion(region, animated:true)
+        // 縮尺を設定
+        // 縮尺を設定
+        var region:MKCoordinateRegion = self.mapView.region
+        region.center = self.mapView.userLocation.coordinate
+        region.span.latitudeDelta = 0.02
+        region.span.longitudeDelta = 0.02
+        self.mapView.setRegion(region,animated:false)
+        self.mapView.userTrackingMode = .followWithHeading
         
     }
     

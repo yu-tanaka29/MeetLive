@@ -110,7 +110,13 @@ class ChangeProfileViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("DEBUG_PRINT: viewWillDisappear")
+        // listenerを削除して監視を停止する
+        self.listener?.remove()
     }
     
     // MARK: - IBAction
@@ -197,6 +203,10 @@ class ChangeProfileViewController: UIViewController {
             postRef.updateData(["groups": updateValue])
             
             SVProgressHUD.showSuccess(withStatus: "追加しました")
+            self.groupField.text = ""
+            self.memberField.text = ""
+            self.addGroupButton.isEnabled = false
+            self.addGroupButton.backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
         }
         
     }
@@ -252,6 +262,50 @@ extension ChangeProfileViewController: UITableViewDelegate, UITableViewDataSourc
             cell.setGroupData(groups[indexPath.row])
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        // 削除のアクションを設定する
+        let deleteAction = UIContextualAction(style: .destructive, title:"delete") {
+            (ctxAction, view, completionHandler) in
+            
+            var value: [[String: String]] = []
+            
+            guard let group = self.userArray?.groups[indexPath.row]["group_name"] else {
+                return
+            }
+            
+            guard let member = self.userArray?.groups[indexPath.row]["member_name"] else {
+                return
+            }
+            value = [
+                ["group_name": group,
+                 "member_name": member],
+            ]
+            
+            var updateValue: FieldValue
+            updateValue = FieldValue.arrayRemove(value)
+            
+            let postRef = Firestore.firestore().collection(Const.UserPath).document(self.userArray!.id) // 変更カラム取得
+            postRef.updateData(["groups": updateValue])
+            
+            self.userArray?.groups.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completionHandler(true)
+            
+        }
+        // 削除ボタンのデザインを設定する
+        let trashImage = UIImage(systemName: "trash.fill")?.withTintColor(UIColor.white , renderingMode: .alwaysTemplate)
+        deleteAction.image = trashImage
+        deleteAction.backgroundColor = UIColor(red: 240/255, green: 0/255, blue: 0/255, alpha: 1)
+
+        // スワイプでの削除を無効化して設定する
+        let swipeAction = UISwipeActionsConfiguration(actions:[deleteAction])
+        swipeAction.performsFirstActionWithFullSwipe = false
+       
+        return swipeAction
     }
 }
 
