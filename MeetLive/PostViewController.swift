@@ -84,7 +84,9 @@ class PostViewController: UIViewController {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
+        doneItem.tintColor = UIColor(red: 255/255, green: 174/255, blue: 11/255, alpha: 1)
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancel))
+        cancelItem.tintColor = UIColor(red: 255/255, green: 174/255, blue: 11/255, alpha: 1)
         toolbar.setItems([cancelItem, spacelItem, doneItem], animated: true)
         
         //入力エリアアクセス宣言
